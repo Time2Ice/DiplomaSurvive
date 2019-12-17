@@ -14,6 +14,11 @@ using UI.Controllers;
 using UI.Views;
 using UnityEngine;
 using VBCM;
+using Assets.Scripts.Data;
+using Assets.Scripts.Handlers;
+using Manager;
+using Unity;
+using Assets.Scripts.UI.Controllers;
 
 namespace Installers
 {
@@ -21,38 +26,35 @@ namespace Installers
     {
         public override void InstallBindings()
         {
-            Container.BindInstance(camera);
-            Container.BindInstance(windowSettings.WindowCanvasSettings);
-            Container.BindInstance(windowSettings.WindowFadeData);
-            VbcmInstaller.Install(Container);
-            UiScenarioInstaller.Install(Container);
-            Container.BindInstance(windowPrefabs).AsSingle();
-            Container.Bind<UnityEnumPool<WindowType, Contractor.View>.Factory>().AsSingle();
-            Container.Bind<UnityEnumPool<WindowType, Contractor.View>>().AsSingle();
-            Container.Bind<IWindowInfrastructure>().To<WindowInfrastructure>().AsSingle();
-            Container.Bind(typeof(IWindowScenarioFactory), typeof(IWindowControllerFactory)).FromInstance(this)
-                .AsSingle();
-            
-            BindViews();
-            Container.BindInstance(_bindTypes);
-            BindControllers();
-            BindScenarios();
-            BindEvents();
-            
+            base.InstallBindings();
             var asyncProcessor = new GameObject("AsyncProcessor").AddComponent<AsyncProcessor>();
             Container.BindInstance(asyncProcessor);
-            
+            Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+
             Container.Bind(typeof(IAppStateHandler))
                 .To<AppStateHandler>().AsSingle();
             Container.Bind(typeof(ILocalDataProvider))
                 .To<LocalDataProvider>().AsSingle();
             Container.Bind(typeof(ILocalDataWriter))
                 .To<LocalDataWriter>().AsSingle();
-            Container.Bind(typeof(IPlayerInfoHolder))
-                .To<PlayerInfoHolder>().AsSingle();
-          
+           
+            BindHandlers();
+
         }
 
+        private void BindHandlers()
+        {
+            Container.Bind(typeof(IPlayerInfoHolder))
+                .To<PlayerInfoHolder>().AsSingle();
+            Container.Bind(typeof(IGameInfoHolder))
+                .To<GameInfoHolder>().AsSingle();
+            Container.Bind(typeof(IExperienceHandler))
+                .To<ExperienceHandler>().AsSingle();
+            Container.Bind(typeof(ITaskMessagesHandler))
+                .To<TaskMessagesHandler>().AsSingle();
+            Container.Bind(typeof(IPersonalLifeHandler))
+                .To<PersonalLifeHandler>().AsSingle();
+   }
         protected override void BindViews()
         {
              BindView(WindowType.Courses);
@@ -64,6 +66,7 @@ namespace Installers
              BindView(WindowType.GoUp);
              BindView(WindowType.ReasonInfo);
              BindView(WindowType.SendDown);
+            BindView(WindowType.Characters);
         }
 
         protected override void BindControllers()
@@ -82,8 +85,8 @@ namespace Installers
                 .To<GoUp.Controller>().AsSingle();
             
             Container.Bind(typeof(ReasonInfo.Controller), typeof(ReasonInfo.CloseClickEvent.ISubscribed))
-                .To<Courses.Controller>().AsSingle();
-            
+                .To<ReasonInfo.Controller>().AsSingle();
+
             Container.Bind(typeof(Reasons.Controller), typeof(IPublisherAgg), 
                     typeof(Reasons.CloseClickEvent.ISubscribed), typeof(Reasons.ChooseReasonEvent.ISubscribed))
                 .To<Reasons.Controller>().AsSingle();
@@ -93,9 +96,12 @@ namespace Installers
             
             Container.Bind(typeof(SendDown.Controller), typeof(SendDown.RestudyEvent.ISubscribed))
                 .To<SendDown.Controller>().AsSingle();
-            
-            Container.Bind(typeof(TopLobbyMenu.Controller))
-                .To<TopLobbyMenu.Controller>().AsSingle();
+
+            Container.Bind(typeof(TopLobbyMenu.Controller), typeof(IDisposable))
+                 .To<TopLobbyMenu.Controller>().AsSingle();
+
+            Container.Bind(typeof(Characters.Controller), typeof(IDisposable), typeof(Characters.TeacherClickedEvent.ISubscribed), typeof(Characters.HeroClickedEvent.ISubscribed))
+               .To<Characters.Controller>().AsSingle();
 
         }
 
@@ -120,6 +126,7 @@ namespace Installers
             Container.Bind(typeof(ReasonInfo.Scenario)).To<ReasonInfo.Scenario>().AsSingle();
 
             Container.Bind(typeof(GoUp.Scenario)).To<GoUp.Scenario>().AsSingle();
+            Container.Bind(typeof(Characters.Scenario)).To<Characters.Scenario>().AsSingle();
 
         }
 
@@ -144,7 +151,8 @@ namespace Installers
             Container.Bind<ReasonInfo.CloseClickEvent>().AsSingle();
             
             Container.Bind<GoUp.CloseClickEvent>().AsSingle();
-            
+            Container.Bind<Characters.TeacherClickedEvent>().AsSingle();
+            Container.Bind<Characters.HeroClickedEvent>().AsSingle();
         }
 
         public override IWindowController CreateWindowController(WindowType type)
@@ -169,6 +177,8 @@ namespace Installers
                     return Container.Resolve<SendDown.Controller>();
                 case WindowType.TopLobbyMenu:
                     return Container.Resolve<TopLobbyMenu.Controller>();
+                case WindowType.Characters:
+                    return Container.Resolve<Characters.Controller>();
                 default:
                     throw new Exception($"Invalid window type : {type}");
             }
@@ -196,6 +206,8 @@ namespace Installers
                     return Container.Resolve<SendDown.Scenario>();
                 case WindowType.TopLobbyMenu:
                     return Container.Resolve<TopLobbyMenu.Scenario>();
+                case WindowType.Characters:
+                    return Container.Resolve<Characters.Scenario>();
                 default:
                     throw new Exception($"Invalid scenario type : {type}");
             }

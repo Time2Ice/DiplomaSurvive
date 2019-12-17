@@ -11,6 +11,7 @@ namespace UiScenario.Concrete.Data
         Courses,
         Reasons,
         TopLobbyMenu,
-        SendDown
+        SendDown,
+        Characters
     }
 }

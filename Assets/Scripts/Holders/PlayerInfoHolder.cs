@@ -115,7 +115,19 @@ namespace DefaultNamespace
                 _localDataProvider.Save(_playerInfoDto);
             }
         }
-        
+        public int MaxPrivateLife
+        {
+
+            get => _playerInfoDto.max_private_life;
+            set
+            {
+                if (_playerInfoDto.max_private_life == value)
+                    return;
+
+                _playerInfoDto.max_private_life = value;
+                _localDataProvider.Save(_playerInfoDto);
+            }
+        }
         public int CurrentCourse
         {
 
@@ -169,13 +181,19 @@ namespace DefaultNamespace
                     _localDataProvider.Save(dto);
                 }
             }
-
+            dto = CreatePlayerInfo();
             _playerInfoDto = dto;
         }
 
         private PlayerInfoDto CreatePlayerInfo()
         {
-            var dto = new PlayerInfoDto();
+            var dto = new PlayerInfoDto()
+            {
+                points = 0,
+                private_life = 30,
+                max_private_life = 30,
+                current_course = 0
+            };
             return dto;
         }
     }

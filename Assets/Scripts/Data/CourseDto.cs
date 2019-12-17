@@ -6,6 +6,6 @@ namespace DefaultNamespace
     public struct CourseDto
     {
         public int number;
-        public int[] points_to_next;
+        public int points_to_next;
     }
 }

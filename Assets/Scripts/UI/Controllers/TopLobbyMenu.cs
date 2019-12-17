@@ -3,22 +3,32 @@ using System.Globalization;
 using UiScenario;
 using UiScenario.Concrete.Data;
 using UI.Views;
+using Assets.Scripts.Handlers;
+using Assets.Scripts.Data;
+using System;
 
 namespace UI.Controllers
 {
     public class TopLobbyMenu : Contractor
     {
-        public class Controller : Controller<TopLobbyMenuView>
+        public class Controller : Controller<TopLobbyMenuView>, IDisposable
         {
+            private IPersonalLifeHandler _personalLifeHandler;
+            private IExperienceHandler _experienceHandler;
             public override WindowType Type => WindowType.TopLobbyMenu;
 
-            Controller()
+            Controller(IPersonalLifeHandler personalLifeHandler, IExperienceHandler experienceHandler)
             {
-
+                _personalLifeHandler = personalLifeHandler;
+                _experienceHandler = experienceHandler;
+                _personalLifeHandler.PersonalLifeChanged += SetPersonalLife;
+                _experienceHandler.ExperienceChanged += SetMarks;
             }
 
             public override void Open(Dictionary<string, object> callData)
             {
+                SetPersonalLife(_personalLifeHandler.PrivateLife, _personalLifeHandler.MaxPrivateLife);
+                SetMarks(_experienceHandler.Experience, _experienceHandler.MaxExperience);
 
             }
 
@@ -51,6 +61,12 @@ namespace UI.Controllers
             private void SetMarks(int currentValue, int maxValue)
             {
                 ConcreteView.SetMarks(currentValue, maxValue);
+            }
+
+            public void Dispose()
+            {
+                _personalLifeHandler.PersonalLifeChanged -= SetPersonalLife;
+                _experienceHandler.ExperienceChanged -= SetMarks;
             }
         }
 

@@ -15,7 +15,10 @@ namespace DefaultNamespace
         public int TaskPrice=>_gameInfoDto.task_price;
         public int ReasonPossibilityPlus=>_gameInfoDto.reason_possibility_plus;
         public int[] TaskTimes=>_gameInfoDto.task_times;
-        
+        public int PrivateLifeClickReduce => _gameInfoDto.personal_life_click_reduce;
+        public float PersonalLifeIncreaseTime => _gameInfoDto.personal_life_increase_time;
+
+
         private readonly IAppStateHandler _appStateHandler;
         private readonly ILocalDataProvider _localDataProvider;
 
@@ -41,13 +44,20 @@ namespace DefaultNamespace
                     _localDataProvider.Save(dto);
                 }
             }
-
-           _gameInfoDto = dto;
+            dto = CreateGameInfo();
+            _gameInfoDto = dto;
         }
 
         private GameInfoDto CreateGameInfo()
         {
-            var dto = new GameInfoDto();
+            var dto = new GameInfoDto()
+            {
+                task_price = 3,
+                task_times = new[] { 5, 6 },
+                personal_life_click_reduce = 3,
+                personal_life_increase_time = 2,
+                courses = new[] { new CourseDto { number = 1, points_to_next = 40 }, new CourseDto { number = 2, points_to_next = 40 } }
+            };
             return dto;
         }
     }

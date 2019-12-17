@@ -16,10 +16,10 @@ namespace DefaultNamespace
 
         public int points;
         public int private_life;
+         public int max_private_life;
         public int current_course;
 
         public int possibility_to_stay;
-
         public bool AbilitiesEqual(int[] other)
         {
             if (abilities == null || other == null) return false;
@@ -30,7 +30,7 @@ namespace DefaultNamespace
             }
             return true;
         }
-        
+
         public bool CoursesEqual(int[] other)
         {
             if (courses == null || other == null) return false;
@@ -41,7 +41,7 @@ namespace DefaultNamespace
             }
             return true;
         }
-        
+
         public bool ReasonsEqual(string[] other)
         {
             if (reasons == null || other == null) return false;

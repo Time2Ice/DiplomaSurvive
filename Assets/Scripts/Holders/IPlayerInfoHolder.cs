@@ -12,5 +12,6 @@ namespace DefaultNamespace
         int PrivateLife { get; set; }
         int CurrentCourse { get; set; }
         int PossibilityToStay { get; set; }
+        int MaxPrivateLife { get; set; }
     }
 }
