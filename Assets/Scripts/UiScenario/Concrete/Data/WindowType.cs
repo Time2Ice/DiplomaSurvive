@@ -12,6 +12,8 @@ namespace UiScenario.Concrete.Data
         Reasons,
         TopLobbyMenu,
         SendDown,
-        Characters
+        Characters,
+        Test,
+        Event
     }
 }

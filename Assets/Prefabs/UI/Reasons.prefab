@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591991eda6db44ed99d25540b3fa28a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 7
   _componentContainers: []
   _attributes: 01000000
   _canvasConfig:

@@ -13,6 +13,6 @@ namespace Assets.Scripts.Handlers
         event Action CompleteTask;
         bool CheckTaskTakePossibility();
         void TakeTask(int teacherNum);
-
+        void ReduceTaskTimer();
     }
 }

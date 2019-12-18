@@ -9,6 +9,7 @@ namespace Game
         {
             windowHandler.OpenWindow(WindowType.Characters);
             windowHandler.OpenWindow(WindowType.TopLobbyMenu);
+            windowHandler.OpenWindow(WindowType.DownLobbyMenu);
         }
     }
 }

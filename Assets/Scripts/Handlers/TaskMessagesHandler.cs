@@ -19,6 +19,7 @@ namespace Assets.Scripts.Handlers
        private Coroutine[] _nextMessageWaitors;
        private Coroutine _timer;
        private Queue<int> _takenTasksTimes;
+        private int _currentTaskTimeLeftt;
 
         public TaskMessagesHandler(AsyncProcessor asyncProcessor, IExperienceHandler experienceHandler, IGameInfoHolder gameInfoHolder)
         {
@@ -70,12 +71,22 @@ namespace Assets.Scripts.Handlers
             AddMessage?.Invoke(teacherNum);
         }
 
+        public void ReduceTaskTimer()
+        {
+            _currentTaskTimeLeftt = _currentTaskTimeLeftt-2;
+            Debug.Log(_currentTaskTimeLeftt);
+        }
+
         public IEnumerator Timer()
         {
             while (_takenTasksTimes.Count > 0)
             {
-                int time = _takenTasksTimes.Dequeue();
-                yield return new WaitForSeconds(time);
+                _currentTaskTimeLeftt = _takenTasksTimes.Dequeue();
+                while (_currentTaskTimeLeftt > 0)
+                {
+                    yield return new WaitForSeconds(1);
+                    _currentTaskTimeLeftt--;
+                }
                 _experienceHandler.ChangeExperience();
                 CompleteTask?.Invoke();
             }

@@ -53,7 +53,7 @@ namespace DefaultNamespace
             var dto = new GameInfoDto()
             {
                 task_price = 3,
-                task_times = new[] { 5, 6 },
+                task_times = new[] { 6, 6 },
                 personal_life_click_reduce = 3,
                 personal_life_increase_time = 2,
                 courses = new[] { new CourseDto { number = 1, points_to_next = 40 }, new CourseDto { number = 2, points_to_next = 40 } }

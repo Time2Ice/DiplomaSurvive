@@ -73,6 +73,8 @@ namespace Assets.Scripts.UI.Controllers
             void EventAggHub<HeroClickedEvent>.ISubscribed.OnEvent()
             {
                 _personalLifeHandler.ReducePrivateLife();
+                if(_personalLifeHandler.PrivateLife>0)
+                _taskMessagesHandler.ReduceTaskTimer();
             }
 
             void EventAggHub<TeacherClickedEvent, int>.ISubscribed.OnEvent(int value)
