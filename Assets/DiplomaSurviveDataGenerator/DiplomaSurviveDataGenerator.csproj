@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66652212-6101-4C40-9A5D-97430C6A9320}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DiplomaSurviveDataGenerator</RootNamespace>
+    <AssemblyName>DiplomaSurviveDataGenerator</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Checks\BaseDeductionCheck.cs" />
+    <Compile Include="Checks\BaseCheck.cs" />
+    <Compile Include="Checks\BaseCheckStep.cs" />
+    <Compile Include="Checks\CheckLastClickTime.cs" />
+    <Compile Include="Checks\PersonalLifeScoreShortageCheckStep.cs" />
+    <Compile Include="Checks\StudyScoreShortageCheckStep.cs" />
+    <Compile Include="Contexts\BaseContext.cs" />
+    <Compile Include="Contexts\Context.cs" />
+    <Compile Include="Contexts\EventsContext.cs" />
+    <Compile Include="Contexts\MainContext.cs" />
+    <Compile Include="Contexts\ScoreContext.cs" />
+    <Compile Include="Contexts\TasksContext.cs" />
+    <Compile Include="Contexts\TimeContext.cs" />
+    <Compile Include="DeepCloneExtension.cs" />
+    <Compile Include="DTO\Deduction.cs" />
+    <Compile Include="DTO\DTO.cs" />
+    <Compile Include="Enums\DeductionType.cs" />
+    <Compile Include="Enums\EventType.cs" />
+    <Compile Include="Enums\ExamPageType.cs" />
+    <Compile Include="Enums\ExamType.cs" />
+    <Compile Include="Enums\PlayState.cs" />
+    <Compile Include="Exams\ExamButton.cs" />
+    <Compile Include="Exams\ExamFailPage.cs" />
+    <Compile Include="Exams\ExamPage.cs" />
+    <Compile Include="Exams\ExamService.cs" />
+    <Compile Include="Exams\ExamSuccessPage.cs" />
+    <Compile Include="Exams\ExamTree.cs" />
+    <Compile Include="Exams\SimilarPageExam.cs" />
+    <Compile Include="Implementations\Play.cs" />
+    <Compile Include="Interfaces\ICheck.cs" />
+    <Compile Include="Interfaces\ICheckStep.cs" />
+    <Compile Include="Interfaces\ICloneable generic.cs" />
+    <Compile Include="Interfaces\IDeductionCheck.cs" />
+    <Compile Include="Interfaces\IDeductionStore.cs" />
+    <Compile Include="Interfaces\IExam.cs" />
+    <Compile Include="Interfaces\IExamService.cs" />
+    <Compile Include="Interfaces\INumberDistribution.cs" />
+    <Compile Include="Interfaces\INumberGenerator.cs" />
+    <Compile Include="Interfaces\IPlayEventsService.cs" />
+    <Compile Include="Interfaces\IPlayEventStore.cs" />
+    <Compile Include="Interfaces\IShallowCopy.cs" />
+    <Compile Include="Interfaces\IStateService.cs" />
+    <Compile Include="Interfaces\IStore.cs" />
+    <Compile Include="NumberGenerators\DefaultNumberGenerator.cs" />
+    <Compile Include="NumberGenerators\UniformDistribution.cs" />
+    <Compile Include="PlayEvents\ActionPage.cs" />
+    <Compile Include="PlayEvents\Button.cs" />
+    <Compile Include="PlayEvents\Page.cs" />
+    <Compile Include="PlayEvents\PlayEvent.cs" />
+    <Compile Include="PlayEvents\PlayEventsService.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States\DefaultStateMachine.cs" />
+    <Compile Include="States\StateKey.cs" />
+    <Compile Include="States\StateService.cs" />
+    <Compile Include="Stores\BaseStore.cs" />
+    <Compile Include="Stores\DeductionStore.cs" />
+    <Compile Include="Stores\PlayEventStore.cs" />
+    <Compile Include="ValueChanged delegate.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
