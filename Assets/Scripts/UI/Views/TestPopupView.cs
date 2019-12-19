@@ -26,7 +26,7 @@ namespace Assets.Scripts.UI.Views
             base.Initialize(infrastructure, parent);
             Infrastructure.BinderAgg.Bind(this);
             _firstButton.onClick.AddListener(() => Event1().Publish());
-            _secondButton.onClick.AddListener(() => Event1().Publish());
+            _secondButton.onClick.AddListener(() => Event2().Publish());
         }
 
         public void SetTestText(string text)

@@ -19,6 +19,7 @@ using Assets.Scripts.Handlers;
 using Manager;
 using Unity;
 using Assets.Scripts.UI.Controllers;
+using DiplomaSurviveDataGenerator;
 
 namespace Installers
 {
@@ -39,7 +40,24 @@ namespace Installers
                 .To<LocalDataWriter>().AsSingle();
            
             BindHandlers();
+            BindExamGenerator();
 
+        }
+
+        private void BindExamGenerator()
+        {
+            var baseContext = new BaseContext()
+            {
+                Main = new MainContext(null)
+            };
+            var play = new Play(null, baseContext);
+            var examStore = play.ExamStore;
+
+            Container.Bind(typeof(INumberGenerator))
+                  .To<DefaultNumberGenerator>().AsSingle();
+            
+            Container.Bind(typeof(IExamService))
+               .To<ExamService>().AsSingle().WithArguments(baseContext, examStore);
         }
 
         private void BindHandlers()
@@ -67,6 +85,7 @@ namespace Installers
              BindView(WindowType.ReasonInfo);
              BindView(WindowType.SendDown);
             BindView(WindowType.Characters);
+            BindView(WindowType.Test);
         }
 
         protected override void BindControllers()
@@ -103,6 +122,9 @@ namespace Installers
             Container.Bind(typeof(Characters.Controller), typeof(IDisposable), typeof(Characters.TeacherClickedEvent.ISubscribed), typeof(Characters.HeroClickedEvent.ISubscribed))
                .To<Characters.Controller>().AsSingle();
 
+            Container.Bind(typeof(TestPopup.Controller), typeof(TestPopup.FirstButtonClicked.ISubscribed), typeof(TestPopup.SecondButtonClicked.ISubscribed))
+              .To<TestPopup.Controller>().AsSingle();
+
         }
 
         protected override void BindScenarios()
@@ -127,6 +149,7 @@ namespace Installers
 
             Container.Bind(typeof(GoUp.Scenario)).To<GoUp.Scenario>().AsSingle();
             Container.Bind(typeof(Characters.Scenario)).To<Characters.Scenario>().AsSingle();
+            Container.Bind(typeof(TestPopup.Scenario)).To<TestPopup.Scenario>().AsSingle();
 
         }
 
@@ -153,6 +176,9 @@ namespace Installers
             Container.Bind<GoUp.CloseClickEvent>().AsSingle();
             Container.Bind<Characters.TeacherClickedEvent>().AsSingle();
             Container.Bind<Characters.HeroClickedEvent>().AsSingle();
+
+            Container.Bind<TestPopup.FirstButtonClicked>().AsSingle();
+            Container.Bind< TestPopup.SecondButtonClicked>().AsSingle();
         }
 
         public override IWindowController CreateWindowController(WindowType type)
@@ -179,6 +205,8 @@ namespace Installers
                     return Container.Resolve<TopLobbyMenu.Controller>();
                 case WindowType.Characters:
                     return Container.Resolve<Characters.Controller>();
+                case WindowType.Test:
+                    return Container.Resolve<TestPopup.Controller>();
                 default:
                     throw new Exception($"Invalid window type : {type}");
             }
@@ -208,6 +236,9 @@ namespace Installers
                     return Container.Resolve<TopLobbyMenu.Scenario>();
                 case WindowType.Characters:
                     return Container.Resolve<Characters.Scenario>();
+                case WindowType.Test:
+                    return Container.Resolve<TestPopup.Scenario>();
+
                 default:
                     throw new Exception($"Invalid scenario type : {type}");
             }
