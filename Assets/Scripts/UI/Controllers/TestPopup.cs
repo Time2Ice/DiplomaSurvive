@@ -10,7 +10,7 @@ namespace UI.Controllers
 {
    public class TestPopup: Contractor
     {
-        public class Controller : Controller<TestPopupView>
+        public class Controller : Controller<TestPopupView>, SecondButtonClicked.ISubscribed, FirstButtonClicked.ISubscribed
         {
             public override WindowType Type => WindowType.Test;
             Controller()
@@ -19,6 +19,16 @@ namespace UI.Controllers
             }
             public override void Open(Dictionary<string, object> callData)
             {
+            }
+
+            void EventAggHub<SecondButtonClicked>.ISubscribed.OnEvent()
+            {
+                
+            }
+
+            void EventAggHub<FirstButtonClicked>.ISubscribed.OnEvent()
+            {
+               
             }
         }
 
