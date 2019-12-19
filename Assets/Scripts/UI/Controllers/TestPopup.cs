@@ -1,6 +1,7 @@
 ﻿
 
 using Assets.Scripts.UI.Views;
+using EventAggregator;
 using System.Collections.Generic;
 using UiScenario;
 using UiScenario.Concrete.Data;
@@ -29,6 +30,14 @@ namespace UI.Controllers
             {
             }
 
+        }
+
+        public class SecondButtonClicked : EventAggHub<SecondButtonClicked>
+        {
+        }
+
+        public class FirstButtonClicked : EventAggHub<FirstButtonClicked>
+        {
         }
     }
 }
