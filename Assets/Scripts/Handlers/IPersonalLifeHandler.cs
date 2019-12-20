@@ -8,8 +8,7 @@ namespace Assets.Scripts.Handlers
 {
     public interface IPersonalLifeHandler
     {
-        event Action<int, int> PersonalLifeChanged;
-        void ReducePrivateLife();
+       void ReducePrivateLife();
 
         int MaxPrivateLife { get; }
 

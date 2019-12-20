@@ -1,10 +1,22 @@
 using DataProvider;
 using Game;
+using System;
 
 namespace DefaultNamespace
 {
     public class PlayerInfoHolder : IPlayerInfoHolder
     {
+          
+        public event Action<int, int> PersonalLifeChanged;
+
+        public event Action<int> CoinsChanged;
+
+        public event Action<int> CourseChanged;
+
+        public event Action<int> MaxCourseChanged;
+        public event Action<int> UniversityChanged;
+
+
         private PlayerInfoDto _playerInfoDto;
         
         public int[] Abilities
@@ -60,6 +72,7 @@ namespace DefaultNamespace
 
                 _playerInfoDto.max_course = value;
                 _localDataProvider.Save(_playerInfoDto);
+                MaxCourseChanged?.Invoke(_playerInfoDto.max_course);
             }
         }
         
@@ -73,6 +86,7 @@ namespace DefaultNamespace
 
                 _playerInfoDto.university = value;
                 _localDataProvider.Save(_playerInfoDto);
+                UniversityChanged?.Invoke(_playerInfoDto.university);
             }
         }
         public int Coins
@@ -85,12 +99,12 @@ namespace DefaultNamespace
 
                 _playerInfoDto.coins = value;
                 _localDataProvider.Save(_playerInfoDto);
+                CoinsChanged?.Invoke(_playerInfoDto.coins);
             }
         }
         
         public int Points
         {
-
             get => _playerInfoDto.points;
             set
             {
@@ -98,6 +112,19 @@ namespace DefaultNamespace
                     return;
 
                 _playerInfoDto.points = value;
+                _localDataProvider.Save(_playerInfoDto);
+            }
+        }
+
+        public int TaskQueueCapasity
+        {
+            get => _playerInfoDto.task_queue_capacity;
+            set
+            {
+                if (_playerInfoDto.task_queue_capacity == value)
+                    return;
+
+                _playerInfoDto.task_queue_capacity = value;
                 _localDataProvider.Save(_playerInfoDto);
             }
         }
@@ -113,6 +140,7 @@ namespace DefaultNamespace
 
                 _playerInfoDto.private_life = value;
                 _localDataProvider.Save(_playerInfoDto);
+                PersonalLifeChanged?.Invoke(_playerInfoDto.private_life, _playerInfoDto.max_private_life);
             }
         }
         public int MaxPrivateLife
@@ -126,6 +154,8 @@ namespace DefaultNamespace
 
                 _playerInfoDto.max_private_life = value;
                 _localDataProvider.Save(_playerInfoDto);
+                PersonalLifeChanged?.Invoke(_playerInfoDto.private_life, _playerInfoDto.max_private_life);
+
             }
         }
         public int CurrentCourse
@@ -139,6 +169,11 @@ namespace DefaultNamespace
 
                 _playerInfoDto.current_course = value;
                 _localDataProvider.Save(_playerInfoDto);
+                if (_playerInfoDto.current_course> _playerInfoDto.max_course)
+                {
+                    MaxCourse = _playerInfoDto.current_course;
+                }
+                CourseChanged?.Invoke(_playerInfoDto.current_course);
             }
         }
 
@@ -189,10 +224,16 @@ namespace DefaultNamespace
         {
             var dto = new PlayerInfoDto()
             {
+                coins = 600,
                 points = 0,
                 private_life = 30,
                 max_private_life = 30,
-                current_course = 0
+                current_course = 0,
+                max_course = 0,
+                task_queue_capacity = 20,
+                abilities = new int[0],
+                courses= new int[0],
+                reasons=new string[] {"1"}
             };
             return dto;
         }

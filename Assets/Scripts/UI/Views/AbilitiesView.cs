@@ -7,15 +7,14 @@ using UiScenario;
 using UI.Controllers;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Linq;
 
 namespace UI.Views
 {
     public class AbilitiesView:Contractor.View, IPublisherAgg<Abilities.BuyClickEvent, Abilities.CloseClickEvent>
     {        
         
-        [SerializeField] private Ability[] _abilities;
-      
+        [SerializeField] private Ability[] _abilities;      
         [SerializeField] private Button _closeButton;
         [SerializeField] private TMP_Text _balanceText;
 
@@ -27,24 +26,23 @@ namespace UI.Views
             base.Initialize(infrastructure, parent);
 
             Infrastructure.BinderAgg.Bind(this);
-            for (int i = 0; i < _abilities.Length; i++)
-            {
-                BindBuyButton(i);
-            }
             _closeButton.onClick.AddListener(()=>Event2().Publish());
         }
 
-        private void BindBuyButton(int index)
+        private void BindBuyButton(Ability ability)
         {
-            _abilities[index]._buyButton.onClick.AddListener(()=>Event1().Publish(index));
+           ability._buyButton.onClick.RemoveAllListeners();
+           ability._buyButton.onClick.AddListener(()=>Event1().Publish(ability.Id));
         }
 
         public void SetAbilitiesData(AbilityDto[] abilities)
         {
-            for (int i = 0; i < 0; i++)
+            for (int i = 0; i < abilities.Length; i++)
             {
                 _abilities[i]._nameText.text = abilities[i].name;
                 _abilities[i]._priceText.text = abilities[i].price.ToString(CultureInfo.InvariantCulture);
+                _abilities[i].Id = abilities[i].id;
+                BindBuyButton(_abilities[i]);
             }
         }
         public void SetBalance(int balance)
@@ -52,7 +50,12 @@ namespace UI.Views
             _balanceText.text = balance.ToString(CultureInfo.InvariantCulture);
         }
 
-       
+        internal void SetBoughtAbility(int id)
+        {
+            var ability = _abilities.FirstOrDefault(a => a.Id == id);
+            ability._priceText.text = "Bought";
+            ability._buyButton.enabled=false;
+        }
     }
 
     [Serializable]
@@ -61,6 +64,7 @@ namespace UI.Views
         public TMP_Text _nameText;
         public Button _buyButton;
         public TMP_Text _priceText;
+        public int Id { get; set; }
 
     }
     

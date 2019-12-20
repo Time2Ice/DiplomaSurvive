@@ -16,7 +16,7 @@ namespace UiScenario
         private readonly IWindowScenarioFactory _scenarioFactory;
         private readonly IWindowFadeManager _windowFadeManager;
 
-        private readonly Stack<IWindowController> _windowCtrls = new Stack<IWindowController>();
+        private List<IWindowController> _windowCtrls = new List<IWindowController>();
         private readonly Stack<IWindowScenario> _scenarios = new Stack<IWindowScenario>();
 
         private Action _currentAction;
@@ -37,7 +37,7 @@ namespace UiScenario
                 AddScenario(type);
                 if (_windowCtrls.Count > 0)
                 {
-                    var topWindowController = _windowCtrls.Peek();
+                    var topWindowController = _windowCtrls[_windowCtrls.Count - 1];
                     topWindowController.Block();
                 }
 
@@ -48,9 +48,11 @@ namespace UiScenario
                 controller.Closed += OnWindowClosedCallback;
 
                 controller.Open(callData);
+                controller.View.Transform.localPosition = Vector3.zero;
+
                 if (controller.View.Attributes.Contains(WindowAttribute.Modal) && _windowCtrls.Count > 0)
                 {
-                    var topController = _windowCtrls.Peek();
+                    var topController = _windowCtrls.FirstOrDefault(w => w.Type == type);
                     if (topController.View.Attributes.Contains(WindowAttribute.Modal))
                     {
                         topController.Block();
@@ -67,7 +69,7 @@ namespace UiScenario
                 if (!controller.View.Attributes.Contains(WindowAttribute.Modal))
                     MoveBottomModal(controller);
                 else
-                    _windowCtrls.Push(controller);
+                    _windowCtrls.Add(controller);
 
                 OnWindowStateChanged(WindowActionType.Open, controller);
                 ActionComplete();
@@ -78,21 +80,22 @@ namespace UiScenario
 
         private void MoveBottomModal(IWindowController controller)
         {
-            if (_windowCtrls.Count > 0 && _windowCtrls.Peek().View.Attributes.Contains(WindowAttribute.Modal))
+            if (_windowCtrls.Count > 0 && _windowCtrls[_windowCtrls.Count - 1].View.Attributes.Contains(WindowAttribute.Modal))
             {
-                var modalCtrl = _windowCtrls.Pop();
+                var modalCtrl = _windowCtrls[_windowCtrls.Count - 1];
+                _windowCtrls.RemoveAt(_windowCtrls.Count - 1);
                 MoveBottomModal(controller);
-                _windowCtrls.Push(modalCtrl);
+                _windowCtrls.Add(modalCtrl);
             }
             else
-                _windowCtrls.Push(controller);
+                _windowCtrls.Add(controller);
         }
 
         public IWindowController GetTopWindow()
         {
             if (_windowCtrls.Count > 0)
             {
-                var topWindow = _windowCtrls.Peek();
+                var topWindow = _windowCtrls[_windowCtrls.Count - 1];
                 return topWindow;
             }
 
@@ -111,7 +114,7 @@ namespace UiScenario
 
         private void OnWindowStateChanged(WindowActionType actionType, IWindowController controller)
         {
-//            Debug.Log($"<color=green>{actionType}    {controller.GetType()}</color>");
+            //            Debug.Log($"<color=green>{actionType}    {controller.GetType()}</color>");
             _scenarios.First(s => s.Type == controller.Type).OnWindowAction(actionType, controller);
         }
 
@@ -142,20 +145,54 @@ namespace UiScenario
                 RunAction(_actions.Dequeue());
         }
 
+
         private void RemoveWindowInternal(WindowType type)
         {
             if (_windowCtrls.Count > 0)
             {
-                var windowForRemoving = _windowCtrls.Peek();
-                var windowForRemovingType = windowForRemoving.Type;
-                if (windowForRemovingType == type)
+                var windowForRemoving = _windowCtrls.FirstOrDefault(w => w.Type == type);
+                if (windowForRemoving != null)
                 {
-                    _windowCtrls.Pop();
+                    _windowCtrls.Remove(windowForRemoving);
                     windowForRemoving.Closed -= OnWindowClosedCallback;
 
                     if (_windowCtrls.Count > 0)
                     {
-                        var topWindowController = _windowCtrls.Peek();
+                        var topWindowController = _windowCtrls[_windowCtrls.Count - 1];
+                        if (topWindowController.View.Attributes.Contains(WindowAttribute.Modal))
+                        {
+                            topWindowController.Unblock();
+                            OnWindowStateChanged(WindowActionType.Unblocked, topWindowController);
+                        }
+
+                        if (_windowCtrls.All(c => !c.View.Attributes.Contains(WindowAttribute.Modal)))
+                            foreach (var ctrl in _windowCtrls)
+                            {
+                                ctrl.Unblock();
+                                OnWindowStateChanged(WindowActionType.Unblocked, ctrl);
+                            }
+                    }
+
+                    windowForRemoving.OnClose();
+                }
+            }
+
+            ActionComplete();
+        }
+        private void RemoveWindowInternalPeek(WindowType type)
+        {
+            if (_windowCtrls.Count > 0)
+            {
+                var windowForRemoving = _windowCtrls[_windowCtrls.Count - 1];
+                var windowForRemovingType = windowForRemoving.Type;
+                if (windowForRemovingType == type)
+                {
+                    _windowCtrls.RemoveAt(_windowCtrls.Count - 1);
+                    windowForRemoving.Closed -= OnWindowClosedCallback;
+
+                    if (_windowCtrls.Count > 0)
+                    {
+                        var topWindowController = _windowCtrls[_windowCtrls.Count - 1];
                         if (topWindowController.View.Attributes.Contains(WindowAttribute.Modal))
                         {
                             topWindowController.Unblock();

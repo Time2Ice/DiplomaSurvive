@@ -20,6 +20,10 @@ namespace DefaultNamespace
         public int current_course;
 
         public int possibility_to_stay;
+
+        public int task_queue_capacity;
+
+
         public bool AbilitiesEqual(int[] other)
         {
             if (abilities == null || other == null) return false;

@@ -7,5 +7,6 @@ namespace DefaultNamespace
     {
         public int number;
         public int points_to_next;
+
     }
 }

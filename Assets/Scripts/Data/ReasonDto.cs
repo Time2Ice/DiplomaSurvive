@@ -8,6 +8,5 @@ namespace DefaultNamespace
         public string Id;
         public string Name;
         public string Description;
-        public string Possibility;
     }
 }

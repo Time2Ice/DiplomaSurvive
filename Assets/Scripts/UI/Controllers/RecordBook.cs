@@ -50,7 +50,7 @@ namespace UI.Controllers
 
         public new class Scenario : Contractor.Scenario, OpenWindowEvent.ISubscribed
         {
-            public override WindowType Type => WindowType.Abilities;
+            public override WindowType Type => WindowType.RecordBook;
 
             public Scenario(IWindowHandler windowHandler) : base(windowHandler)
             {

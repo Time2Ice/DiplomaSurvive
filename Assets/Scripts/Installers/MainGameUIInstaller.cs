@@ -50,11 +50,15 @@ namespace Installers
                 .To<GameInfoHolder>().AsSingle();
             Container.Bind(typeof(IExperienceHandler))
                 .To<ExperienceHandler>().AsSingle();
+            Container.Bind(typeof(ITasksHandler))
+                .To<TasksHandler>().AsSingle();
             Container.Bind(typeof(ITaskMessagesHandler))
-                .To<TaskMessagesHandler>().AsSingle();
+               .To<TaskMessagesHandler>().AsSingle();
             Container.Bind(typeof(IPersonalLifeHandler))
                 .To<PersonalLifeHandler>().AsSingle();
-   }
+            Container.Bind(typeof(IReasonHandler))
+               .To<ReasonHandler>().AsSingle();
+        }
         protected override void BindViews()
         {
              BindView(WindowType.Courses);
