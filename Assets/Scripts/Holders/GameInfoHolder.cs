@@ -40,7 +40,7 @@ namespace DefaultNamespace
         
         private void SetData()
         {
-           if (!_appStateHandler.GetData(out GameInfoDto dto))
+            if (!_appStateHandler.GetData(out GameInfoDto dto))
             {
                 if (_localDataProvider.Exist<GameInfoDto>())
                 {
@@ -52,7 +52,10 @@ namespace DefaultNamespace
                     _localDataProvider.Save(dto);
                 }
             }
-            dto = CreateGameInfo();
+            else
+            {
+                dto = CreateGameInfo();
+            }
             _gameInfoDto = dto;
         }
 

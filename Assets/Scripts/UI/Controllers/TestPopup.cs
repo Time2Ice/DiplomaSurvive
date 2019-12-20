@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Handlers;
 using Assets.Scripts.UI.Views;
 using DefaultNamespace;
 using DiplomaSurviveDataGenerator;
@@ -21,11 +22,13 @@ namespace UI.Controllers
             public override WindowType Type => WindowType.Test;
             private TestType _type;
             private IPlayerInfoHolder _playerInfoHolder;
+            private IReasonHandler _reasonHandler;
 
-            public Controller(IExamService examService, IPlayerInfoHolder playerInfoHolder)
+            public Controller(IExamService examService, IPlayerInfoHolder playerInfoHolder, IReasonHandler reasonHadler)
             {
                 _playerInfoHolder = playerInfoHolder;
                 _examService = examService;
+                _reasonHandler = reasonHadler;
             }
 
             public override void Open(Dictionary<string, object> callData)
@@ -86,6 +89,7 @@ namespace UI.Controllers
                 _playerInfoHolder.UniversityPoints = 0;
                 _playerInfoHolder.TasksTaken = 0;
                 _playerInfoHolder.PrivateLife = _playerInfoHolder.MaxPrivateLife;
+                _reasonHandler.ShowReason("2");
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
