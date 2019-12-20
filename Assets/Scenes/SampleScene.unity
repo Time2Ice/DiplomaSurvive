@@ -404,16 +404,18 @@ MonoBehaviour:
   camera: {fileID: 519420031}
   windowSettings: {fileID: 11400000, guid: 81d4298d3a48744588191407802a5f57, type: 2}
   windowPrefabs:
+  - {fileID: 1049539748009244392, guid: 5c9395f3d31034215ad5b6e370c23fc8, type: 3}
   - {fileID: 1843185281484138203, guid: 236f4a0774af0474fb80a0c6e6ea2c9b, type: 3}
-  - {fileID: 2135096139566103463, guid: 310b225630dbb4e829e105395249faa9, type: 3}
   - {fileID: 9091903101122455758, guid: eecb3453e72304367ad2b39bbd1fa17b, type: 3}
-  - {fileID: -5605452170832621667, guid: 5c9395f3d31034215ad5b6e370c23fc8, type: 3}
+  - {fileID: 1125965492426972393, guid: 105bdb3cf851b834db2b00e15f38e03d, type: 3}
   - {fileID: 6672911507008995033, guid: afdaed5e42b7044a88a2eb488ba7627b, type: 3}
   - {fileID: 5247045780900474003, guid: 202a1be7e86f14788bf224660ac8f000, type: 3}
+  - {fileID: 5013993735493148843, guid: c1d4cc2f7bfba44eaaba78de0739a28e, type: 3}
   - {fileID: 6964784275119263773, guid: c35423df1533e46cfa4ca9cc8ba24775, type: 3}
   - {fileID: 3701089819203288625, guid: 39b202575045a40a19ea1de65bc0dac8, type: 3}
-  - {fileID: -1571021821747716042, guid: adb50266b2e5f4b15a4d8f545652eb0b, type: 3}
   - {fileID: 4662880967994243709, guid: 9761145268629d4439002e140c676d28, type: 3}
+  - {fileID: 2135096139566103463, guid: 310b225630dbb4e829e105395249faa9, type: 3}
+  - {fileID: -1199919876428349996, guid: adb50266b2e5f4b15a4d8f545652eb0b, type: 3}
 --- !u!114 &1200946900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,8 +429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _viewPrefabs:
-  - {fileID: 9102487931871818954, guid: 1c18e2e2df3924b12aef20141657c6c3, type: 3}
-  - {fileID: 691609456599886561, guid: c28ca3aa8fb6345529ba3716bba5524d, type: 3}
+  - {fileID: -1269192639161309224, guid: 1c18e2e2df3924b12aef20141657c6c3, type: 3}
+  - {fileID: -6920681954940489559, guid: c28ca3aa8fb6345529ba3716bba5524d, type: 3}
   - {fileID: -1977340088202919566, guid: 1eb1c2490937a9c40be0b12aad31d0f8, type: 3}
   - {fileID: -4122519465456948886, guid: 4882508aa9cce2749a2df7424db23cfd, type: 3}
   _poolRoot: {fileID: 997577864}

@@ -13,7 +13,8 @@ namespace DiplomaSurviveDataGenerator
         public IEventContext Events { get; }
         public IStudyContext Study { get; }
 
-        public BasePlayContext(IScoreContext scoreContext, IMainContext mainContext, IEventContext eventContext, IStudyContext studyContext)
+        public BasePlayContext(IScoreContext scoreContext, IMainContext mainContext, 
+            IEventContext eventContext, IStudyContext studyContext)
         {
             Score = scoreContext;
             Main = mainContext;
@@ -21,5 +22,4 @@ namespace DiplomaSurviveDataGenerator
             Study = studyContext;
         }
     }
-
 }

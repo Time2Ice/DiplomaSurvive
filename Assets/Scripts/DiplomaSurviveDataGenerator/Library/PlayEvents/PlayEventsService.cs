@@ -10,8 +10,8 @@ namespace DiplomaSurviveDataGenerator
     {
         private readonly IPlayContext _context;
         private readonly INumberGenerator _generator;
-
         private readonly IPlayEventStore _eventsService;
+        
         public double EventProbability { get; set; } = 0.00001;
 
         public bool IsAvailable

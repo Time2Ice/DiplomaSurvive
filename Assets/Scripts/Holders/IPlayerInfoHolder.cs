@@ -24,5 +24,9 @@ namespace DefaultNamespace
         int PossibilityToStay { get; set; }
         int MaxPrivateLife { get; set; }
         int TaskQueueCapasity { get; set; }
+
+        int MaxPoints { get; set; }
+        int UniversityPoints { get; set; }
+        int TasksTaken { get; set; }
     }
 }

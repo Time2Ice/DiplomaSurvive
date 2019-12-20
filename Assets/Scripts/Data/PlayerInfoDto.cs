@@ -14,10 +14,14 @@ namespace DefaultNamespace
         public int university;
         public int coins;
 
+        public int max_points;
+        public int university_points;
         public int points;
         public int private_life;
-         public int max_private_life;
+        public int max_private_life;
         public int current_course;
+
+        public int tasks_taken;
 
         public int possibility_to_stay;
 

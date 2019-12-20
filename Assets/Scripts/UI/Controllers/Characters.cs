@@ -34,7 +34,6 @@ namespace Assets.Scripts.UI.Controllers
                 _tasksHandler = tasksHandler;
                 _taskMessagesHandler.AddMessage += ShowTaskMessage;
                 _tasksHandler.CompleteTask += HideTask;
-
             }
 
             public override void Open(Dictionary<string, object> callData)

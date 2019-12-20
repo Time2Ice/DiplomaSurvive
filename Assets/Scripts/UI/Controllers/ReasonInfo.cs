@@ -5,6 +5,7 @@ using UiScenario;
 using UiScenario.Concrete.Data;
 using UI.Views;
 using UnityEngine;
+using DefaultNamespace;
 
 namespace UI.Controllers
 {
@@ -12,16 +13,19 @@ namespace UI.Controllers
     {
         public class Controller : Controller<ReasonInfoView>, CloseClickEvent.ISubscribed
         {
-            public override WindowType Type => WindowType.GoUp;           
+            public override WindowType Type => WindowType.ReasonInfo;
+            private ReasonDto _reason;
            
             Controller()
             {
-              
+                
+
             }
 
             public override void Open(Dictionary<string, object> callData)
             {
-                ShowData("Reason", "Description");
+                _reason = (ReasonDto)callData["Reason"];
+                ShowData(_reason.Name, _reason.Description);
             }
 
             private void ShowData(string name, string description)

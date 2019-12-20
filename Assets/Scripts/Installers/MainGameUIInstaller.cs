@@ -11,8 +11,6 @@ using UiScenario.Concrete.Data;
 using UiScenario.Concrete.Factory;
 using UiScenario.Factory;
 using UI.Controllers;
-using UI.Views;
-using UnityEngine;
 using VBCM;
 using Assets.Scripts.Data;
 using Assets.Scripts.Handlers;
@@ -21,6 +19,7 @@ using Unity;
 using Assets.Scripts.UI.Controllers;
 using DiplomaSurviveDataGenerator;
 using Assets.Scripts.DiplomaSurviveDataGenerator.Implementations;
+using UnityEngine;
 
 namespace Installers
 {
@@ -39,14 +38,13 @@ namespace Installers
                 .To<LocalDataProvider>().AsSingle();
             Container.Bind(typeof(ILocalDataWriter))
                 .To<LocalDataWriter>().AsSingle();
-
+            Container.Bind(typeof(IPlayStateHandler)).To<PlayStateHandler>().AsSingle();
             BindHandlers();
             BindDataGenerator();
         }
 
         private void BindDataGenerator()
         {
-
             Container.Bind(typeof(INumberGenerator))
                   .To<DefaultNumberGenerator>().AsSingle();
             Container.Bind(typeof(IStudyContext))

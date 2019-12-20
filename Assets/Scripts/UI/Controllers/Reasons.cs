@@ -11,6 +11,7 @@ using UiScenario;
 using UiScenario.Concrete.Data;
 using UI.Views;
 using Assets.Scripts.Handlers;
+using System.Linq;
 
 namespace UI.Controllers
 {
@@ -86,7 +87,7 @@ namespace UI.Controllers
 
             void EventAggHub<ChooseReasonEvent, string>.ISubscribed.OnEvent(string id)
             {
-                ReasonDto reason=new ReasonDto();
+                var reason = _gameInfoHolder.Reasons.FirstOrDefault(r => r.Id == id);
                 Event1().Publish(reason);
                 
             }
@@ -104,7 +105,11 @@ namespace UI.Controllers
 
             void EventAggHub<OpenReasonInfo, ReasonDto>.ISubscribed.OnEvent(ReasonDto value)
             {
-                WindowHandler.OpenWindow(WindowType.ReasonInfo);
+                var data = new Dictionary<string, object>
+                {
+                    {"Reason", value}
+                };
+                WindowHandler.OpenWindow(WindowType.ReasonInfo, data);
             }
         }
 

@@ -8,9 +8,9 @@ namespace Game
         public LobbyLoader(IWindowHandler windowHandler)
         {
             windowHandler.OpenWindow(WindowType.Characters);
-            // windowHandler.OpenWindow(WindowType.TopLobbyMenu);
-            //  windowHandler.OpenWindow(WindowType.DownLobbyMenu);
-            windowHandler.OpenWindow(WindowType.Test);
+             windowHandler.OpenWindow(WindowType.TopLobbyMenu);
+              windowHandler.OpenWindow(WindowType.DownLobbyMenu);
+           // windowHandler.OpenWindow(WindowType.Test);
         }
     }
 }
