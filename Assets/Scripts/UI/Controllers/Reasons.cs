@@ -25,7 +25,8 @@ namespace UI.Controllers
             private IGameInfoHolder _gameInfoHolder;
             private IReasonHandler _reasonHandler;
 
-            Controller(UnityPool pool, IReasonHandler reasonHandler, IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
+            Controller(UnityPool pool,
+                IReasonHandler reasonHandler, IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
             {
                 _pool = pool;
                 _playerInfoHolder = playerInfoHolder;
