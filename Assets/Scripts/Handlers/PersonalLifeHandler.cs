@@ -8,8 +8,7 @@ namespace Assets.Scripts.Handlers
     public class PersonalLifeHandler : IPersonalLifeHandler, IDisposable
     {
 
-        public event Action<int, int> PersonalLifeChanged;
-        private readonly IGameInfoHolder _gameInfoHolder;
+       private readonly IGameInfoHolder _gameInfoHolder;
         private readonly IPlayerInfoHolder _playerInfoHolder;
         private readonly AsyncProcessor _asyncProcessor;
 
@@ -41,8 +40,7 @@ namespace Assets.Scripts.Handlers
                 _playerInfoHolder.PrivateLife = _playerInfoHolder.MaxPrivateLife;
             if (_playerInfoHolder.PrivateLife < 0)
                 _playerInfoHolder.PrivateLife = 0;
-            PersonalLifeChanged?.Invoke( _playerInfoHolder.PrivateLife , _playerInfoHolder.MaxPrivateLife);
-        }
+           }
 
         private IEnumerator IncreasePrivateLife()
         {
@@ -52,7 +50,6 @@ namespace Assets.Scripts.Handlers
                 if (_playerInfoHolder.PrivateLife < _playerInfoHolder.MaxPrivateLife)
                 {
                     _playerInfoHolder.PrivateLife = _playerInfoHolder.PrivateLife + 1;
-                    PersonalLifeChanged?.Invoke(_playerInfoHolder.PrivateLife, _playerInfoHolder.MaxPrivateLife);
                 }
             }
         }

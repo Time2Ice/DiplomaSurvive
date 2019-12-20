@@ -23,12 +23,13 @@ namespace Assets.Scripts.Handlers
 
         public void ChangeExperience()
         {
-            _playerInfoHolder.Points = _playerInfoHolder.Points+_gameInfoHolder.TaskPrice;
-            if(_playerInfoHolder.Points>_gameInfoHolder.Courses[_playerInfoHolder.CurrentCourse].points_to_next)
+            _playerInfoHolder.Points = _playerInfoHolder.Points+_gameInfoHolder.TaskCompletePoints;
+            if(_playerInfoHolder.Points>_gameInfoHolder.Courses[_playerInfoHolder.CurrentCourse].points_to_next&& _gameInfoHolder.Courses.Length>_playerInfoHolder.CurrentCourse+1)
             {
                 _playerInfoHolder.Points = _playerInfoHolder.Points -
                                            _gameInfoHolder.Courses[_playerInfoHolder.CurrentCourse].points_to_next;
                 _playerInfoHolder.CurrentCourse = _playerInfoHolder.CurrentCourse + 1;
+                
             }
             ExperienceChanged?.Invoke(_playerInfoHolder.Points,_gameInfoHolder.Courses[_playerInfoHolder.CurrentCourse].points_to_next);
 

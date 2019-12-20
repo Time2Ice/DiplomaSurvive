@@ -7,8 +7,6 @@ namespace DefaultNamespace
     {
         public int id;
         public string name;
-        public int price;
-        public string type;
-        public int value;
+        public int price;     
     }
 }

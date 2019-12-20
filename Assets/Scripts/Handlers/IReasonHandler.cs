@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Handlers
 {
-   public interface ITaskMessagesHandler
-    { 
-        event Action<int> AddMessage;
-
-        void StartWaitForNextMessage(int teacherNum);
-      
+    interface IReasonHandler
+    {
+        event Action<string> ReasonOpened;
+        void OpenReason(string id);
     }
 }
