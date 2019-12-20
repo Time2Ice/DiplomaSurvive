@@ -13,9 +13,10 @@ namespace UI.Controllers
     {
         public class Controller : Controller<SendDownView>, RestudyEvent.ISubscribed
         {
-            IPlayerInfoHolder _playerInfoHolder;
+             public override WindowType Type => WindowType.SendDown;
 
-            public override WindowType Type => WindowType.SendDown;
+            private IPlayerInfoHolder _playerInfoHolder;
+            private ReasonDto _reason;
 
             Controller(IPlayerInfoHolder playerInfoHolder)
             {
@@ -24,7 +25,8 @@ namespace UI.Controllers
 
             public override void Open(Dictionary<string, object> callData)
             {
-                ShowData("Reason", "Description");
+                _reason = (ReasonDto)callData["GoDownReason"];
+                ShowData(_reason.Name, _reason.Description);
             }
 
             private void ShowData(string name, string description)
