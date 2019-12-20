@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UiScenario;
 
 namespace Assets.Scripts.Handlers
 {
-    interface IReasonHandler
+    public interface IReasonHandler
     {
         event Action<string> ReasonOpened;
-        void OpenReason(string id);
+        void ShowReason(string id);
+        IWindowHandler WindowHandler { get; set; }
     }
 }

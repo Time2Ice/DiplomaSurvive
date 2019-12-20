@@ -28,7 +28,8 @@ namespace DefaultNamespace
         private readonly ILocalDataProvider _localDataProvider;
         private readonly IPlayStateHandler _playStateHandler;
 
-        public GameInfoHolder(IAppStateHandler appStateHandler, IPlayStateHandler playStateHandler,
+        public GameInfoHolder(IAppStateHandler appStateHandler,
+            IPlayStateHandler playStateHandler,
             ILocalDataProvider localDataProvider)
         {
             _localDataProvider = localDataProvider;

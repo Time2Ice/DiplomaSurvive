@@ -241,6 +241,7 @@ namespace DefaultNamespace
             _localDataProvider = localDataProvider;
             _appStateHandler = appStateHandler;
             SetData();
+        //    requests.SignIn("Lilly");
         }
 
         private void SetData()

@@ -13,17 +13,19 @@ namespace Assets.Scripts.Handlers
         private readonly IGameInfoHolder _gameInfoHolder;
         private readonly IPlayerInfoHolder _playerInfoHolder;
         private readonly IWindowHandler _windowHandler;
-
+        private readonly IReasonHandler _reasonHandler;
 
         public int MaxExperience => _gameInfoHolder.Courses[_playerInfoHolder.CurrentCourse].points_to_next;
         public int Experience => _playerInfoHolder.Points;
 
 
-        public ExperienceHandler(IWindowHandler windowHandler,IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
+        public ExperienceHandler(IReasonHandler reasonHandler, IWindowHandler windowHandler,IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
         {
             _windowHandler = windowHandler;
             _playerInfoHolder = playerInfoHolder;
             _gameInfoHolder = gameInfoHolder;
+            _reasonHandler = reasonHandler;
+            _reasonHandler.WindowHandler = _windowHandler;
             if(_playerInfoHolder.UniversityPoints==0)
             {
                 OpenTestWindow(TestType.EIT);

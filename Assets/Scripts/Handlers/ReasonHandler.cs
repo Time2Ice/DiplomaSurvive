@@ -8,17 +8,17 @@ using UiScenario;
 
 namespace Assets.Scripts.Handlers
 {
-    public class ReasonHandler:IReasonHandler
+    public class ReasonHandler : IReasonHandler
     {
         public event Action<string> ReasonOpened;
         private readonly IGameInfoHolder _gameInfoHolder;
         private readonly IPlayerInfoHolder _playerInfoHolder;
-        private readonly IWindowHandler _windowHandler;
-        public ReasonHandler(IWindowHandler windowHandler, IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
+        public IWindowHandler WindowHandler {get;set;}
+        public ReasonHandler(IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
         {
             _playerInfoHolder = playerInfoHolder;
             _gameInfoHolder = gameInfoHolder;
-            _windowHandler = windowHandler;
+           
         }
         
         public void ShowReason(string id)
@@ -40,7 +40,7 @@ namespace Assets.Scripts.Handlers
                 {
                     {"GoDownReason", reason}
                 };
-            _windowHandler.OpenWindow(UiScenario.Concrete.Data.WindowType.SendDown, data);
+            WindowHandler.OpenWindow(UiScenario.Concrete.Data.WindowType.SendDown, data);
 
         }
     }
