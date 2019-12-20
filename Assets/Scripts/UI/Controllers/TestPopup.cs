@@ -89,8 +89,7 @@ namespace UI.Controllers
                 _playerInfoHolder.UniversityPoints = 0;
                 _playerInfoHolder.TasksTaken = 0;
                 _playerInfoHolder.PrivateLife = _playerInfoHolder.MaxPrivateLife;
-                _reasonHandler.ShowReason("2");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                _reasonHandler.ShowReason("1");
             }
 
             private void GoUp()
