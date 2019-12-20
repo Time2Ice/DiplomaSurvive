@@ -1,3 +1,4 @@
+using Assets.Scripts.Handlers;
 using DataProvider;
 using Game;
 using Zenject;
@@ -21,15 +22,18 @@ namespace DefaultNamespace
         public int PrivateLifeClickReduce => _gameInfoDto.personal_life_click_reduce;
         public float PersonalLifeIncreaseTime => _gameInfoDto.personal_life_increase_time;
 
+        public PlayState CurrentState => _playStateHandler.GetState();
 
         private readonly IAppStateHandler _appStateHandler;
         private readonly ILocalDataProvider _localDataProvider;
+        private readonly IPlayStateHandler _playStateHandler;
 
-        public GameInfoHolder(IAppStateHandler appStateHandler,
+        public GameInfoHolder(IAppStateHandler appStateHandler, IPlayStateHandler playStateHandler,
             ILocalDataProvider localDataProvider)
         {
             _localDataProvider = localDataProvider;
             _appStateHandler = appStateHandler;
+            _playStateHandler = playStateHandler;
             SetData();
         }
         
