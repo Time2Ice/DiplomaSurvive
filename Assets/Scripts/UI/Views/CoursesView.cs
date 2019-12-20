@@ -40,15 +40,19 @@ namespace UI.Views
         {
             if (_courses.ContainsKey(course.Id)) return;
             course.transform.SetParent(_coursesArea.transform);
+            course.Name.gameObject.SetActive(false);
+            course.Mask.gameObject.SetActive(true);
             _courses.Add(course.Id, course);
         }
-        
-        public void ChangeCourse(int id, Sprite image, string name)
+
+        internal void OpenCourse(int id)
         {
             var courseToChange = _courses[id];
-            courseToChange.Image.sprite = image;
-            courseToChange.Name.text = name;
+            courseToChange.Name.gameObject.SetActive(true);
+            courseToChange.Mask.gameObject.SetActive(false);
         }
+
+      
 
       
     }

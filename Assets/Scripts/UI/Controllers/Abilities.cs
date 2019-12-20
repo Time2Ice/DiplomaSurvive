@@ -5,6 +5,9 @@ using EventAggregator;
 using UiScenario;
 using UiScenario.Concrete.Data;
 using UI.Views;
+using Assets.Scripts.Abililties;
+using System.Linq;
+using UnityEngine;
 
 namespace UI.Controllers
 {
@@ -12,22 +15,37 @@ namespace UI.Controllers
     {
           public class Controller : Controller<AbilitiesView>, IDisposable, BuyClickEvent.ISubscribed, CloseClickEvent.ISubscribed
         {
-            public override WindowType Type => WindowType.Abilities;           
-           
-            Controller()
+            public override WindowType Type => WindowType.Abilities;
+            private IAbility[] _abilities;
+            private IPlayerInfoHolder _playerInfoHolder;
+            private IGameInfoHolder _gameInfoHolder;
+
+            Controller(IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
             {
-              
+                _playerInfoHolder = playerInfoHolder;
+                _gameInfoHolder = gameInfoHolder;
+                _abilities = new IAbility[]
+                {
+                   new IncreasePrivateLifeAbility(_playerInfoHolder),
+                   new IncreaseTasksCapacityAbility(_playerInfoHolder)
+               };
+                _abilities[0].Id = _gameInfoHolder.Abilities[0].id;
+                _abilities[1].Id = _gameInfoHolder.Abilities[1].id;
+
+                _playerInfoHolder.CoinsChanged += ShowCoins;
             }
             public override void Open(Dictionary<string, object> callData)
             {
-                var abilities = new AbilityDto[]
+                
+                ShowAbilities(_gameInfoHolder.Abilities);
+                ShowCoins(_playerInfoHolder.Coins);
+                foreach(var ability in _abilities)
                 {
-                    new AbilityDto() {id = 1, name = "first", price = 100},
-                    new AbilityDto() {id = 1, name = "first", price = 100},
-                    new AbilityDto() {id = 1, name = "first", price = 100}
-                };
-                ShowAbilities(abilities);
-                ShowCoins(900);
+                    if(_playerInfoHolder.Abilities.Contains(ability.Id))
+                    {
+                        SetBoughtAbility(ability.Id);
+                    }
+                }
             }
             
             
@@ -41,11 +59,31 @@ namespace UI.Controllers
             {
                 ConcreteView.SetBalance(coins);
             }
+            private void SetBoughtAbility(int id)
+            {
+                ConcreteView.SetBoughtAbility(id);
+            }
 
 
             void EventAggHub<BuyClickEvent, int>.ISubscribed.OnEvent(int value)
             {
-                //todo if player balance is enough, buy ability, else show popup or do nothing
+                Debug.Log(value);
+                var ability = _gameInfoHolder.Abilities.FirstOrDefault(a => a.id == value);
+                if (_playerInfoHolder.Coins>=ability.price)
+                {
+                    _abilities.FirstOrDefault(a => a.Id == value).UseAbility();
+                    _playerInfoHolder.Coins = _playerInfoHolder.Coins - ability.price;
+                    AddAbilityToOwned(value);
+                   SetBoughtAbility(value);
+                }
+            }
+
+            private void AddAbilityToOwned(int id)
+            {
+                var abilities = _playerInfoHolder.Abilities.ToList();
+                abilities.Add(id);
+                _playerInfoHolder.Abilities = abilities.ToArray();
+
             }
 
             void EventAggHub<CloseClickEvent>.ISubscribed.OnEvent()
@@ -55,7 +93,7 @@ namespace UI.Controllers
 
             public void Dispose()
             {
-                
+                _playerInfoHolder.CoinsChanged -= ShowCoins;
             }
         }
 

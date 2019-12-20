@@ -1,7 +1,15 @@
+using System;
+
 namespace DefaultNamespace
 {
     public interface IPlayerInfoHolder
     {
+        event Action<int, int> PersonalLifeChanged;
+        event Action<int> CoinsChanged;
+        event Action<int> CourseChanged;
+        event Action<int> MaxCourseChanged;
+         event Action<int> UniversityChanged;
+
         int[] Abilities { get; set; }
         int[] Courses { get; set; }
         string[] Reasons { get; set; }
@@ -13,5 +21,6 @@ namespace DefaultNamespace
         int CurrentCourse { get; set; }
         int PossibilityToStay { get; set; }
         int MaxPrivateLife { get; set; }
+        int TaskQueueCapasity { get; set; }
     }
 }

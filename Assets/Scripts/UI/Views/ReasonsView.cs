@@ -19,7 +19,7 @@ namespace UI.Views
         [SerializeField] private GridLayoutGroup _reasonsArea;
         [SerializeField] private Button _closeButton;
 
-        private Dictionary<string, Reason> _reasons;
+        private Dictionary<string, Reason> _reasons=new Dictionary<string, Reason>();
         
         public Func<Reasons.CloseClickEvent> Event1 { get; set; }
         public Func<Reasons.ChooseReasonEvent> Event2 { get; set; }
@@ -49,8 +49,8 @@ namespace UI.Views
             if (_reasons.ContainsKey(reason.Id)) return;
             reason.transform.SetParent(_reasonsArea.transform);
             _reasons.Add(reason.Id, reason);
-            reason.SelectButton.onClick.RemoveAllListeners();
-            reason.SelectButton.onClick.AddListener(()=>Event2().Publish(reason.Id));
+            reason.Mask.gameObject.SetActive(true);
+            reason.Name.gameObject.SetActive(false);
         }
         
         public void ChangeReason(string id, string reasonName, Sprite image)
@@ -60,6 +60,13 @@ namespace UI.Views
             reason.Image.sprite = image;
         }
 
-       
+        internal void OpenReason(string id)
+        {
+            var reason = _reasons[id];
+            reason.Mask.gameObject.SetActive(false);
+            reason.Name.gameObject.SetActive(true);
+            reason.SelectButton.onClick.RemoveAllListeners();
+            reason.SelectButton.onClick.AddListener(()=>Event2().Publish(reason.Id));
+        }
     }
 }

@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Handlers
 {
-    public interface IPersonalLifeHandler
+    interface IReasonHandler
     {
-       void ReducePrivateLife();
-
-        int MaxPrivateLife { get; }
-
-        int PrivateLife { get; }
+        event Action<string> ReasonOpened;
+        void OpenReason(string id);
     }
-
 }
-

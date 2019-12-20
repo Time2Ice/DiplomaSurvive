@@ -19,24 +19,27 @@ namespace Assets.Scripts.UI.Controllers
             private readonly UnityPool _pool;
             private TaskMessage[] _taskMessages;
             private ITaskMessagesHandler _taskMessagesHandler;
+            private ITasksHandler _tasksHandler;
+
             private IPersonalLifeHandler _personalLifeHandler;
 
             private Queue<Task> _tasks=new Queue<Task>();
 
-            Controller(UnityPool pool, ITaskMessagesHandler taskMessagesHandler, IPersonalLifeHandler personalLifeHandler)
+            Controller(UnityPool pool, ITasksHandler tasksHandler, ITaskMessagesHandler taskMessagesHandler, IPersonalLifeHandler personalLifeHandler)
             {
                 _pool = pool;
                 _taskMessages=new TaskMessage[3];
                 _taskMessagesHandler = taskMessagesHandler;
                 _personalLifeHandler = personalLifeHandler;
+                _tasksHandler = tasksHandler;
                 _taskMessagesHandler.AddMessage += ShowTaskMessage;
-                _taskMessagesHandler.CompleteTask += HideTask;
+                _tasksHandler.CompleteTask += HideTask;
 
             }
 
             public override void Open(Dictionary<string, object> callData)
             {
-
+                
             }
 
             private void ShowTaskMessage(int teacherNum)
@@ -74,14 +77,15 @@ namespace Assets.Scripts.UI.Controllers
             {
                 _personalLifeHandler.ReducePrivateLife();
                 if(_personalLifeHandler.PrivateLife>0)
-                _taskMessagesHandler.ReduceTaskTimer();
+                _tasksHandler.ReduceTaskTimer();
             }
 
             void EventAggHub<TeacherClickedEvent, int>.ISubscribed.OnEvent(int value)
             {
-                if (_taskMessages[value]!=null&&_taskMessagesHandler.CheckTaskTakePossibility())
+                if (_taskMessages[value]!=null&&_tasksHandler.CheckTaskTakePossibility())
                 {
-                    _taskMessagesHandler.TakeTask(value);
+                    _tasksHandler.TakeTask(value);
+                    _taskMessagesHandler.StartWaitForNextMessage(value);
                     HideTaskMessage(value);
                     ShowTask();
                 }
@@ -90,6 +94,7 @@ namespace Assets.Scripts.UI.Controllers
             public void Dispose()
             {
                 _taskMessagesHandler.AddMessage -= ShowTaskMessage;
+                _tasksHandler.CompleteTask -= HideTask;
             }
         }
 

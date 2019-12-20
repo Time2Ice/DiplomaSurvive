@@ -11,9 +11,7 @@ namespace Assets.Scripts.Handlers
     { 
         event Action<int> AddMessage;
 
-        event Action CompleteTask;
-        bool CheckTaskTakePossibility();
-        void TakeTask(int teacherNum);
-        void ReduceTaskTimer();
+        void StartWaitForNextMessage(int teacherNum);
+      
     }
 }

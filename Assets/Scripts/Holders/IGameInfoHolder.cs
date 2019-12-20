@@ -5,8 +5,9 @@ namespace DefaultNamespace
         PlayState CurrentState { get; }
         AbilityDto[] Abilities { get; }
         CourseDto[] Courses { get; }
-        ReasonCategory[] ReasonCategories { get; }
-        int TaskPrice { get; }
+        ReasonDto[] Reasons { get; }
+        int TaskCompletePoints { get; }
+        int TaskCompleteCoins { get; }
         int ReasonPossibilityPlus { get; }
         int[] TaskTimes { get; }
 
