@@ -38,7 +38,7 @@ namespace Installers
             Container.Bind(typeof(ILocalDataWriter))
                 .To<LocalDataWriter>().AsSingle();
             Container.Bind(typeof(IPlayStateHandler)).To<PlayStateHandler>().AsSingle();
-           // Container.Bind(typeof(Requests)).To<Requests>().AsSingle();
+            Container.Bind(typeof(Requests)).To<Requests>().AsSingle();
 
             BindHandlers();
             BindDataGenerator();

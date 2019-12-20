@@ -1474,7 +1474,7 @@ GameObject:
   - component: {fileID: 1866461971585374343}
   - component: {fileID: 1866461971585374340}
   m_Layer: 5
-  m_Name: ContinuePossibility
+  m_Name: Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1527,7 +1527,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Possibility to continue studying: 100%'
+  m_text: 'Position: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 35.9
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1596,10 +1596,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1866461971585374340}
-    characterCount: 38
+    characterCount: 10
     spriteCount: 0
-    spaceCount: 4
-    wordCount: 5
+    spaceCount: 1
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2582,7 +2582,7 @@ MonoBehaviour:
   _universityCountText: {fileID: 1866461971125244994}
   _balanceText: {fileID: 1866461971692491515}
   _semesterText: {fileID: 1866461971388010817}
-  _continuePossibilityText: {fileID: 1866461971585374340}
+  _positionText: {fileID: 1866461971585374340}
   _personalLifeText: {fileID: 2442835346086911573}
   _marksText: {fileID: 6422643298318846090}
   _personalLifeSlider: {fileID: 1866461972154959963}

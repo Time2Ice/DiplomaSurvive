@@ -27,6 +27,12 @@ namespace DefaultNamespace
 
         public int task_queue_capacity;
 
+        public string token;
+
+        public string name;
+
+        public int position;
+
 
         public bool AbilitiesEqual(int[] other)
         {

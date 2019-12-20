@@ -67,7 +67,7 @@ namespace UI.Controllers
             
             private void OpenReason(string id)
             {
-                ConcreteView.OpenReason(id);
+                ConcreteView?.OpenReason(id);
                 ShowProgress(_playerInfoHolder.Reasons.Length, _gameInfoHolder.Reasons.Length);
             }
 
