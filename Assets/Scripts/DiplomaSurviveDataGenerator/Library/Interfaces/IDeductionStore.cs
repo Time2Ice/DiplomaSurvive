@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DiplomaSurviveDataGenerator
 {
-
-    public interface IDeductionStore
+    public interface IDeductionService
     {
         Deduction GetDeduction(DeductionType type, int? level = null);
     }

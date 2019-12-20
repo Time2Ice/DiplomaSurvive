@@ -9,11 +9,11 @@ namespace DiplomaSurviveDataGenerator
     [Serializable]
     public abstract class DTO
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public DTO()
         {
-            Id = GetHashCode();
+            Id = GetHashCode().ToString();
         }
     }
 }

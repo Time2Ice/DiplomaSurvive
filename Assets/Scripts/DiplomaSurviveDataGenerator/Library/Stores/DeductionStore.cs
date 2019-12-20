@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DiplomaSurviveDataGenerator
 {
-    public class DeductionStore : IDeductionStore
+    public class DeductionService : IDeductionService
     {
         private readonly IStore<Deduction> _deductionStore;
         private readonly INumberGenerator _generator;
 
-        public DeductionStore(IStore<Deduction> deductionStore, INumberGenerator generator = null)
+        public DeductionService(IStore<Deduction> deductionStore, INumberGenerator generator = null)
         {
             _deductionStore = deductionStore ?? throw new ArgumentNullException();
             _generator = generator ?? new DefaultNumberGenerator();

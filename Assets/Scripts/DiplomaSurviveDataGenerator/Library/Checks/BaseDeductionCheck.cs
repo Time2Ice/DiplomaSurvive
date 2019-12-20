@@ -11,7 +11,7 @@ namespace DiplomaSurviveDataGenerator
         private INumberGenerator _generator;
         protected IPlayContext _context;
         protected List<BaseCheck> _checks;
-        protected IDeductionStore _deductionStore;
+        protected IDeductionService _deductionStore;
         public INumberGenerator NumberGenerator
         {
             get
@@ -29,7 +29,7 @@ namespace DiplomaSurviveDataGenerator
         (
             IPlayContext context, 
             IStore<BaseCheck> checks, 
-            IDeductionStore deductionStore
+            IDeductionService deductionStore
         )
         {
             _context = context ?? throw new ArgumentNullException("Context must be not null");
@@ -40,7 +40,6 @@ namespace DiplomaSurviveDataGenerator
 
         public Deduction CheckForDeduction()
         {
-            IsNecessary = false;
             Deduction deduction = null;
             var currChecks = _checks.Where(check => check.IsDirty);
 
@@ -57,6 +56,10 @@ namespace DiplomaSurviveDataGenerator
                 }
             }
 
+            if (deduction == null)
+            {
+                IsNecessary = false;
+            }
             return deduction;
         }
 

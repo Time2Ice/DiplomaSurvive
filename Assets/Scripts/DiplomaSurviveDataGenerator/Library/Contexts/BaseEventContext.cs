@@ -8,7 +8,6 @@ namespace DiplomaSurviveDataGenerator
 {
     public class BaseEventContext : Context, IEventContext
     {
-        protected IDeductionStore _deductionStore;
         public event Action<DeductionType> OnDeduct;
         public event Action<PlayEvent> OnOpenEventPage;
         public event Action OnCloseEventPage;
