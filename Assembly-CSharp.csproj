@@ -83,65 +83,64 @@
     <Compile Include="Assets\Scripts\DataProvider\LocalDataProvider.cs" />
     <Compile Include="Assets\Scripts\DataProvider\LocalDataWriter.cs" />
     <Compile Include="Assets\Scripts\DataProvider\PathType.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Checks\BaseCheck.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Checks\BaseCheckStep.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Checks\BaseDeductionCheck.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Checks\CheckLastClickTime.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Checks\PersonalLifeScoreShortageCheckStep.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Checks\StudyScoreShortageCheckStep.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Contexts\BaseContext.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Contexts\Context.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Contexts\EventsContext.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Contexts\MainContext.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Contexts\ScoreContext.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Contexts\TasksContext.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Contexts\TimeContext.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\DeepCloneExtension.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\DTO\Deduction.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\DTO\DTO.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Enums\DeductionType.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Enums\EventType.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Enums\ExamPageType.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Enums\ExamType.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Enums\PlayState.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Exams\ExamButton.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Exams\ExamFailPage.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Exams\ExamPage.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Exams\ExamService.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Exams\ExamSuccessPage.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Exams\ExamTree.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Exams\SimilarPageExam.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\Play.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\ICheck.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\ICheckStep.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\ICloneable generic.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\IDeductionCheck.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\IDeductionStore.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\IExam.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\IExamService.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\INumberDistribution.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\INumberGenerator.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\IPlayEventsService.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\IPlayEventStore.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\IShallowCopy.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\IStateService.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Interfaces\IStore.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\NumberGenerators\DefaultNumberGenerator.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\NumberGenerators\UniformDistribution.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\PlayEvents\ActionPage.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\PlayEvents\Button.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\PlayEvents\Page.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\PlayEvents\PlayEvent.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\PlayEvents\PlayEventsService.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\PlayContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseCheck.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseCheckStep.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseDeductionCheck.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\CheckLastClickTime.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\PersonalLifeScoreShortageCheckStep.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\StudyScoreShortageCheckStep.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Contexts\BaseContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Contexts\BaseEventContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Contexts\BaseStudyContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Contexts\Context.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Contexts\MainContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Contexts\ScoreContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\DeepCloneExtension.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\DTO\Deduction.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\DTO\DTO.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Enums\DeductionType.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Enums\ExamPageType.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Enums\ExamType.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Exams\ExamButton.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Exams\ExamFailPage.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Exams\ExamPage.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Exams\ExamService.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Exams\ExamSuccessPage.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Exams\ExamTree.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Exams\SimilarPageExam.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\ICheck.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\ICheckStep.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\ICloneable generic.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IDeductionCheck.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IDeductionStore.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IEventContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IExam.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IExamService.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IMainContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\INumberDistribution.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\INumberGenerator.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IPlayEventsService.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IPlayEventStore.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IScoreContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IShallowCopy.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IStore.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IStudyContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\NumberGenerators\DefaultNumberGenerator.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\NumberGenerators\UniformDistribution.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\PlayEvents\ActionPage.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\PlayEvents\Button.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\PlayEvents\Page.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\PlayEvents\PlayEvent.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\PlayEvents\PlayEventsService.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Stores\BaseStore.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Stores\DeductionStore.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Stores\PlayEventStore.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\ValueChanged delegate.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Program.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Properties\AssemblyInfo.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\States\DefaultStateMachine.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\States\StateKey.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\States\StateService.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Stores\BaseStore.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Stores\DeductionStore.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Stores\PlayEventStore.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\ValueChanged delegate.cs" />
     <Compile Include="Assets\Scripts\EventAggregator\BinderAgg.cs" />
     <Compile Include="Assets\Scripts\EventAggregator\EventAggHub.cs" />
     <Compile Include="Assets\Scripts\EventAggregator\EventAggHub1.cs" />
@@ -162,10 +161,15 @@
     <Compile Include="Assets\Scripts\Handlers\ExperienceHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\IExperienceHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\IPersonalLifeHandler.cs" />
+    <Compile Include="Assets\Scripts\Handlers\IPlayStateHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\ITaskMessagesHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\PersonalLifeHandler.cs" />
+    <Compile Include="Assets\Scripts\Handlers\PlayStateHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\TaskMessagesHandler.cs" />
     <Compile Include="Assets\Scripts\Helpers\AsyncProcessor.cs" />
+    <Compile Include="Assets\Scripts\Helpers\States\EventType.cs" />
+    <Compile Include="Assets\Scripts\Helpers\States\PlayState.cs" />
+    <Compile Include="Assets\Scripts\Helpers\States\StateKey.cs" />
     <Compile Include="Assets\Scripts\Holders\GameInfoHolder.cs" />
     <Compile Include="Assets\Scripts\Holders\IGameInfoHolder.cs" />
     <Compile Include="Assets\Scripts\Holders\IPlayerInfoHolder.cs" />
@@ -544,9 +548,6 @@
     <Reference Include="Zenject-usage">
       <HintPath>C:/Users/Veronika_Bridnia/Documents/Study/Game Development/DiplomaSurvive/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>C:/Users/Veronika_Bridnia/Documents/Study/Game Development/DiplomaSurvive/Library/PackageCache/com.unity.ads@2.0.8/UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/Veronika_Bridnia/Documents/Study/Game Development/DiplomaSurvive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
@@ -555,9 +556,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>C:/Users/Veronika_Bridnia/Documents/Study/Game Development/DiplomaSurvive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>C:/Users/Veronika_Bridnia/Documents/Study/Game Development/DiplomaSurvive/Library/PackageCache/com.unity.purchasing@2.0.6/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

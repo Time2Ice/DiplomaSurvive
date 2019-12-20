@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Assets.Scripts.Installers
 {
-    public class GameInstaller:MonoInstaller
+    public class GameInstaller: MonoInstaller
     {
 
         [SerializeField] private UnityPoolObject[] _viewPrefabs;

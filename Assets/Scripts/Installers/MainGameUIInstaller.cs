@@ -38,13 +38,12 @@ namespace Installers
                 .To<LocalDataProvider>().AsSingle();
             Container.Bind(typeof(ILocalDataWriter))
                 .To<LocalDataWriter>().AsSingle();
-           
-            BindHandlers();
-            BindExamGenerator();
 
+            BindHandlers();
+            BindDataGenerator();
         }
 
-        private void BindExamGenerator()
+        private void BindDataGenerator()
         {
             var baseContext = new BaseContext()
             {
@@ -55,7 +54,7 @@ namespace Installers
 
             Container.Bind(typeof(INumberGenerator))
                   .To<DefaultNumberGenerator>().AsSingle();
-            
+
             Container.Bind(typeof(IExamService))
                .To<ExamService>().AsSingle().WithArguments(baseContext, examStore);
         }
@@ -72,18 +71,18 @@ namespace Installers
                 .To<TaskMessagesHandler>().AsSingle();
             Container.Bind(typeof(IPersonalLifeHandler))
                 .To<PersonalLifeHandler>().AsSingle();
-   }
+        }
         protected override void BindViews()
         {
-             BindView(WindowType.Courses);
-             BindView(WindowType.Reasons);
-             BindView(WindowType.RecordBook);
-             BindView(WindowType.Abilities);
-             BindView(WindowType.TopLobbyMenu);
-             BindView(WindowType.DownLobbyMenu);
-             BindView(WindowType.GoUp);
-             BindView(WindowType.ReasonInfo);
-             BindView(WindowType.SendDown);
+            BindView(WindowType.Courses);
+            BindView(WindowType.Reasons);
+            BindView(WindowType.RecordBook);
+            BindView(WindowType.Abilities);
+            BindView(WindowType.TopLobbyMenu);
+            BindView(WindowType.DownLobbyMenu);
+            BindView(WindowType.GoUp);
+            BindView(WindowType.ReasonInfo);
+            BindView(WindowType.SendDown);
             BindView(WindowType.Characters);
             BindView(WindowType.Test);
         }
@@ -92,27 +91,27 @@ namespace Installers
         {
             Container.Bind(typeof(Courses.Controller), typeof(Courses.CloseClickEvent.ISubscribed))
                 .To<Courses.Controller>().AsSingle();
-            
+
             Container.Bind(typeof(Abilities.Controller), typeof(Abilities.CloseClickEvent.ISubscribed),
             typeof(Abilities.BuyClickEvent.ISubscribed))
                 .To<Abilities.Controller>().AsSingle();
-            
+
             Container.Bind(typeof(DownLobbyMenu.Controller))
                 .To<DownLobbyMenu.Controller>().AsSingle();
-            
+
             Container.Bind(typeof(GoUp.Controller), typeof(GoUp.CloseClickEvent.ISubscribed))
                 .To<GoUp.Controller>().AsSingle();
-            
+
             Container.Bind(typeof(ReasonInfo.Controller), typeof(ReasonInfo.CloseClickEvent.ISubscribed))
                 .To<ReasonInfo.Controller>().AsSingle();
 
-            Container.Bind(typeof(Reasons.Controller), typeof(IPublisherAgg), 
+            Container.Bind(typeof(Reasons.Controller), typeof(IPublisherAgg),
                     typeof(Reasons.CloseClickEvent.ISubscribed), typeof(Reasons.ChooseReasonEvent.ISubscribed))
                 .To<Reasons.Controller>().AsSingle();
-            
+
             Container.Bind(typeof(RecordBook.Controller), typeof(RecordBook.CloseClickEvent.ISubscribed))
                 .To<RecordBook.Controller>().AsSingle();
-            
+
             Container.Bind(typeof(SendDown.Controller), typeof(SendDown.RestudyEvent.ISubscribed))
                 .To<SendDown.Controller>().AsSingle();
 
@@ -130,21 +129,21 @@ namespace Installers
         protected override void BindScenarios()
         {
             Container.Bind(typeof(Abilities.Scenario)).To<Abilities.Scenario>().AsSingle();
-            
+
             Container.Bind(typeof(Reasons.Scenario), typeof(Reasons.OpenReasonInfo.ISubscribed))
                 .To<Reasons.Scenario>().AsSingle();
-            
+
             Container.Bind(typeof(RecordBook.Scenario), typeof(RecordBook.OpenWindowEvent.ISubscribed))
                 .To<RecordBook.Scenario>().AsSingle();
-           
+
             Container.Bind(typeof(SendDown.Scenario)).To<SendDown.Scenario>().AsSingle();
-            
+
             Container.Bind(typeof(TopLobbyMenu.Scenario)).To<TopLobbyMenu.Scenario>().AsSingle();
-           
+
             Container.Bind(typeof(Courses.Scenario)).To<Courses.Scenario>().AsSingle();
-           
+
             Container.Bind(typeof(DownLobbyMenu.Scenario), typeof(DownLobbyMenu.OpenWindowEvent.ISubscribed)).To<DownLobbyMenu.Scenario>().AsSingle();
-           
+
             Container.Bind(typeof(ReasonInfo.Scenario)).To<ReasonInfo.Scenario>().AsSingle();
 
             Container.Bind(typeof(GoUp.Scenario)).To<GoUp.Scenario>().AsSingle();
@@ -157,28 +156,28 @@ namespace Installers
         {
             Container.Bind<Abilities.BuyClickEvent>().AsSingle();
             Container.Bind<Abilities.CloseClickEvent>().AsSingle();
-            
+
             Container.Bind<Reasons.OpenReasonInfo>().AsSingle();
             Container.Bind<Reasons.ChooseReasonEvent>().AsSingle();
             Container.Bind<Reasons.CloseClickEvent>().AsSingle();
-            
+
             Container.Bind<RecordBook.OpenWindowEvent>().AsSingle();
             Container.Bind<RecordBook.CloseClickEvent>().AsSingle();
-            
+
             Container.Bind<SendDown.RestudyEvent>().AsSingle();
-            
+
             Container.Bind<Courses.CloseClickEvent>().AsSingle();
-            
+
             Container.Bind<DownLobbyMenu.OpenWindowEvent>().AsSingle();
-            
+
             Container.Bind<ReasonInfo.CloseClickEvent>().AsSingle();
-            
+
             Container.Bind<GoUp.CloseClickEvent>().AsSingle();
             Container.Bind<Characters.TeacherClickedEvent>().AsSingle();
             Container.Bind<Characters.HeroClickedEvent>().AsSingle();
 
             Container.Bind<TestPopup.FirstButtonClicked>().AsSingle();
-            Container.Bind< TestPopup.SecondButtonClicked>().AsSingle();
+            Container.Bind<TestPopup.SecondButtonClicked>().AsSingle();
         }
 
         public override IWindowController CreateWindowController(WindowType type)
@@ -244,5 +243,5 @@ namespace Installers
             }
         }
     }
-    
+
 }

@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-TestFramework", "Ze
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniRx.Async.Editor", "UniRx.Async.Editor.csproj", "{A8C543C1-ABC5-4006-A635-2307BA2C384C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiplomaSurviveDataGenerator", "..\DiplomaSurviveDataGenerator\DiplomaSurviveDataGenerator.csproj", "{66652212-6101-4C40-9A5D-97430C6A9320}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,10 +55,6 @@ Global
 		{A8C543C1-ABC5-4006-A635-2307BA2C384C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8C543C1-ABC5-4006-A635-2307BA2C384C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8C543C1-ABC5-4006-A635-2307BA2C384C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66652212-6101-4C40-9A5D-97430C6A9320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66652212-6101-4C40-9A5D-97430C6A9320}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66652212-6101-4C40-9A5D-97430C6A9320}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66652212-6101-4C40-9A5D-97430C6A9320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

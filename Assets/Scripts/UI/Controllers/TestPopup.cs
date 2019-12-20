@@ -1,6 +1,4 @@
-﻿
-
-using Assets.Scripts.UI.Views;
+﻿using Assets.Scripts.UI.Views;
 using DiplomaSurviveDataGenerator;
 using EventAggregator;
 using System.Collections.Generic;
@@ -10,22 +8,23 @@ using UnityEngine;
 
 namespace UI.Controllers
 {
-   public class TestPopup: Contractor
+    public class TestPopup : Contractor
     {
         public class Controller : Controller<TestPopupView>, SecondButtonClicked.ISubscribed, FirstButtonClicked.ISubscribed
         {
-            private IExamService _examServise;
+            private readonly IExamService _examService;
             private IExam _currentExam;
             private ExamPage _currentExamPage;
             public override WindowType Type => WindowType.Test;
-            Controller(IExamService examService)
+
+            public Controller(IExamService examService)
             {
-                _examServise = examService;
-             
+                _examService = examService;
             }
+
             public override void Open(Dictionary<string, object> callData)
             {
-                _currentExam = _examServise.GetEIT();
+                _currentExam = _examService.GetEIT();
                 _currentExamPage = _currentExam.Start();
                 ChangeData();
             }
@@ -39,14 +38,12 @@ namespace UI.Controllers
                 }
             }
 
-            
-
             void EventAggHub<FirstButtonClicked>.ISubscribed.OnEvent()
             {
                 _currentExamPage = _currentExamPage.LeftButton.OnClickFunc();
                 if (!CheckIfFinal())
                 {
-                  ChangeData();
+                    ChangeData();
                 }
             }
 
@@ -54,7 +51,7 @@ namespace UI.Controllers
             {
                 if (_currentExamPage.Type == ExamPageType.Fail)
                 {
-                    Debug.Log("Failed");                   
+                    Debug.Log("Failed");
                     OnClose();
                     return true;
                 }
@@ -72,7 +69,6 @@ namespace UI.Controllers
                 ConcreteView.SetTestText(_currentExamPage.Title);
                 ConcreteView.SetFirstButtonText(_currentExamPage.LeftButton.Title);
                 ConcreteView.SetSecondButtonText(_currentExamPage.RightButton.Title);
-
             }
         }
 
@@ -83,7 +79,6 @@ namespace UI.Controllers
             public Scenario(IWindowHandler windowHandler) : base(windowHandler)
             {
             }
-
         }
 
         public class SecondButtonClicked : EventAggHub<SecondButtonClicked>

@@ -2,6 +2,7 @@ namespace DefaultNamespace
 {
     public interface IGameInfoHolder
     {
+        PlayState CurrentState { get; }
         AbilityDto[] Abilities { get; }
         CourseDto[] Courses { get; }
         ReasonCategory[] ReasonCategories { get; }
