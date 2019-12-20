@@ -8,12 +8,12 @@ namespace DiplomaSurviveDataGenerator
 {
     public class ExamService : IExamService
     {
-        private readonly BaseContext _context;
+        private readonly IPlayContext _context;
         private readonly INumberGenerator _generator;
         private readonly IStore<IExam> _examStore;
         public double NextTime { get; private set; } = 0;
 
-        public ExamService(BaseContext context, INumberGenerator generator, IStore<IExam> examStore)
+        public ExamService(IPlayContext context, INumberGenerator generator, IStore<IExam> examStore)
         {
             _context = context ?? throw new ArgumentNullException();
             _generator = generator ?? throw new ArgumentNullException();

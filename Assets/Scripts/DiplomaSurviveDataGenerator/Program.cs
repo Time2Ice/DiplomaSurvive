@@ -16,9 +16,9 @@ namespace DiplomaSurviveDataGenerator
 
         public static void Check1()
         {
-            BaseContext context = new BaseContext()
+           IPlayContext context = new BasePlayContext()
             {
-                Score = new ScoreContext()
+                Score = new BaseScoreContext()
                 {
                     PersonalLifeScore = 10,
                 },
@@ -35,7 +35,7 @@ namespace DiplomaSurviveDataGenerator
             Console.WriteLine(checkService.IsDirty);
             Console.WriteLine(checkService.Check());
             Console.WriteLine(checkService.IsDirty);
-            context.Score.MinPersonalLifeScore = 8;
+           // context.Score.MinPersonalLifeScore = 8;
             Console.WriteLine(checkService.IsDirty);
             Console.WriteLine(checkService.Check());
             Console.WriteLine(checkService.IsDirty);
@@ -46,9 +46,9 @@ namespace DiplomaSurviveDataGenerator
 
         public static void Check2()
         {
-            BaseContext context = new BaseContext()
+            IPlayContext context = new BasePlayContext()
             {
-                Score = new ScoreContext()
+                Score = new BaseScoreContext()
                 {
                     PersonalLifeScore = 50,
                 }
@@ -73,7 +73,7 @@ namespace DiplomaSurviveDataGenerator
 
         public static void Check3()
         {
-            Play play = new Play(null, new BaseContext());
+            Play play = new Play(null, new BasePlayContext());
             var exams = play.ExamStore;
             foreach(var exam in exams.GetAll())
             {

@@ -11,7 +11,7 @@ namespace DiplomaSurviveDataGenerator
         public double DeductionProbability { get; set; } = 1;
         public int MinScore { get; set; } = 0;
 
-        public StudyScoreShortageCheckStep(BaseContext context) : base(context)
+        public StudyScoreShortageCheckStep(IPlayContext context) : base(context)
         {
             _context.Score.OnStudyScoreChanged += AskForCheck;
         }

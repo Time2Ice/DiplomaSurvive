@@ -8,13 +8,13 @@ namespace DiplomaSurviveDataGenerator
 {
     public class Play
     {
-        protected BaseContext _context;
+        protected IPlayContext _context;
         protected INumberGenerator _numberGenerator;
         public IStore<IExam> ExamStore { get; protected set; }
         public IStore<ICheck> CheckStore { get; protected set; }
         public IPlayEventStore EventStore { get; protected set; }
 
-        public Play(INumberGenerator numberGenerator, BaseContext context)
+        public Play(INumberGenerator numberGenerator, IPlayContext context)
         {
             _numberGenerator = numberGenerator;
             _context = context;

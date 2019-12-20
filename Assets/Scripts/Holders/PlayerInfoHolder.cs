@@ -115,6 +115,45 @@ namespace DefaultNamespace
                 _localDataProvider.Save(_playerInfoDto);
             }
         }
+        public int MaxPoints
+        {
+            get => _playerInfoDto.max_points;
+            set
+            {
+                if (_playerInfoDto.max_points == value)
+                    return;
+
+                _playerInfoDto.max_points = value;
+                _localDataProvider.Save(_playerInfoDto);
+            }
+        }
+        public int UniversityPoints
+        {
+            get => _playerInfoDto.university_points;
+            set
+            {
+                if (_playerInfoDto.university_points == value)
+                    return;
+
+                _playerInfoDto.university_points = value;
+                if (_playerInfoDto.university_points > MaxPoints)
+                    MaxPoints = _playerInfoDto.university_points;
+                _localDataProvider.Save(_playerInfoDto);
+            }
+        }
+
+        public int TasksTaken
+        {
+            get => _playerInfoDto.tasks_taken;
+            set
+            {
+                if (_playerInfoDto.tasks_taken == value)
+                    return;
+
+                _playerInfoDto.tasks_taken = value;
+                _localDataProvider.Save(_playerInfoDto);
+            }
+        }
 
         public int TaskQueueCapasity
         {

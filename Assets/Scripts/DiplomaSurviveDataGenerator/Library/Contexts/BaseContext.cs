@@ -8,10 +8,10 @@ namespace DiplomaSurviveDataGenerator
 {
     public class BasePlayContext : Context, IPlayContext
     {
-        public IScoreContext Score { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IMainContext Main { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IEventContext Events { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IStudyContext Study { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IScoreContext Score { get; set; }
+        public IMainContext Main { get; set; }
+        public IEventContext Events { get; set; }
+        public IStudyContext Study { get ; set; }
     }
 
     public interface IPlayContext : IContext

@@ -9,7 +9,7 @@ namespace DiplomaSurviveDataGenerator
     public class BaseDeductionCheck : IDeductionCheck
     {
         private INumberGenerator _generator;
-        protected BaseContext _context;
+        protected IPlayContext _context;
         protected List<BaseCheck> _checks;
         protected IDeductionStore _deductionStore;
         public INumberGenerator NumberGenerator
@@ -27,7 +27,7 @@ namespace DiplomaSurviveDataGenerator
 
         public BaseDeductionCheck 
         (
-            BaseContext context, 
+            IPlayContext context, 
             IStore<BaseCheck> checks, 
             IDeductionStore deductionStore
         )

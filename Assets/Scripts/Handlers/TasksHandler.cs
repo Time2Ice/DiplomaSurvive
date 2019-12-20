@@ -29,6 +29,10 @@ namespace Assets.Scripts.Handlers
             _gameInfoHolder = gameInfoHolder;
             _playerInfoHolder = playerInfoHolder;
             _takenTasksTimes = new Queue<int>();
+            for(int i=0; i<_playerInfoHolder.TasksTaken;i++)
+            {
+                _takenTasksTimes.Enqueue(_gameInfoHolder.TaskTimes[UnityEngine.Random.Range(0, _gameInfoHolder.TaskTimes.Length)]);
+            }
         }
 
         public bool CheckTaskTakePossibility()
@@ -39,6 +43,7 @@ namespace Assets.Scripts.Handlers
         public void TakeTask(int teacherNum)
         {
             _takenTasksTimes.Enqueue(_gameInfoHolder.TaskTimes[UnityEngine.Random.Range(0, _gameInfoHolder.TaskTimes.Length)]);
+            _playerInfoHolder.TasksTaken = _playerInfoHolder.TasksTaken + 1;
             if (_timer == null)
 
             {
@@ -49,7 +54,7 @@ namespace Assets.Scripts.Handlers
         public void ReduceTaskTimer()
         {
             _currentTaskTimeLeftt = _currentTaskTimeLeftt - 2;
-            }
+        }
 
         private IEnumerator Timer()
         {
@@ -63,6 +68,7 @@ namespace Assets.Scripts.Handlers
                 }
                 _experienceHandler.ChangeExperience();
                 _playerInfoHolder.Coins = _playerInfoHolder.Coins+_gameInfoHolder.TaskCompleteCoins;
+                _playerInfoHolder.TasksTaken = _playerInfoHolder.TasksTaken - 1;
                 CompleteTask?.Invoke();
             }
             _asyncProcessor.StopCoroutine(_timer);

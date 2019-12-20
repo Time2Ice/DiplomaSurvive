@@ -9,8 +9,8 @@ namespace DiplomaSurviveDataGenerator
     [Serializable]
     public class PlayEvent : ActionPage<Button<Page>>, ICloneable<PlayEvent>
     {
-        public Func<BaseContext, bool> IsAvailableFunc;
-        public virtual bool IsAvailable(BaseContext context = null)
+        public Func<IPlayContext, bool> IsAvailableFunc;
+        public virtual bool IsAvailable(IPlayContext context = null)
         {
             return IsAvailableFunc?.Invoke(context) ?? true;
         }

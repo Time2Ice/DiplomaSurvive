@@ -14,11 +14,11 @@ namespace DiplomaSurviveDataGenerator
         public double MinTimeAfterClick { get; set; } = -1;
         public double MaxTimeAfterClick { get; set; } = double.MaxValue;
 
-        public CheckLastClickTime(BaseContext context) : base(context)
+        public CheckLastClickTime(IPlayContext context) : base(context)
         {
-            _context.Time.OnLastClickChanged += AskForCheck;
+           // _context.Time.OnLastClickChanged += AskForCheck;
         }
-        protected override bool TryHandle(ref double probability)
+     /*   protected override bool TryHandle(ref double probability)
         {
             if (_context.Time.Current <= MinTimeAfterClick || _context.Time.Current >= MaxTimeAfterClick)
             {
@@ -34,6 +34,6 @@ namespace DiplomaSurviveDataGenerator
                 probability = DeductionProbabilityMax;
                 return true;
             }
-        }
+        */
     }
 }

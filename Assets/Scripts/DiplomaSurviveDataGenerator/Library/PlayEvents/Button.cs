@@ -12,7 +12,7 @@ namespace DiplomaSurviveDataGenerator
         public Func<T> ClickFuncReturn;
         [field: NonSerialized]
         public override event ValueChanged OnClickEvent;
-        public virtual T OnClickFunc(BaseContext context = null)
+        public virtual T OnClickFunc(IPlayContext context = null)
         {
             OnClickEvent?.Invoke();
             return default(T);
@@ -37,7 +37,7 @@ namespace DiplomaSurviveDataGenerator
         [field:NonSerialized]
         public virtual event ValueChanged OnClickEvent;
 
-        public virtual void OnClick(BaseContext context = null)
+        public virtual void OnClick(IPlayContext context = null)
         {
             OnClickEvent?.Invoke();
         }

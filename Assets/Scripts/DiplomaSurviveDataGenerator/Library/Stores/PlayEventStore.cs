@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DiplomaSurviveDataGenerator
 {
-    public class PlayEventStore : BaseStore<PlayEvent, BaseContext>, IPlayEventStore
+    public class PlayEventStore : BaseStore<PlayEvent, IPlayContext>, IPlayEventStore
     {
         public PlayEventStore(ICollection<PlayEvent> events = null, INumberGenerator numberGenerator = null)
             : base(events, numberGenerator)
         { }
 
-        public override PlayEvent Get(BaseContext context)
+        public override PlayEvent Get(IPlayContext context)
         {
             var availableEl = GetAll().Where(el => el.IsAvailable(context)).ToList();
             if (availableEl.Count == 0)

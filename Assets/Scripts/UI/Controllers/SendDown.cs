@@ -4,6 +4,8 @@ using UiScenario;
 using UiScenario.Concrete.Data;
 using UI.Views;
 using UnityEngine;
+using DefaultNamespace;
+using UnityEngine.SceneManagement;
 
 namespace UI.Controllers
 {
@@ -11,11 +13,13 @@ namespace UI.Controllers
     {
         public class Controller : Controller<SendDownView>, RestudyEvent.ISubscribed
         {
+            IPlayerInfoHolder _playerInfoHolder;
+
             public override WindowType Type => WindowType.SendDown;
 
-            Controller()
+            Controller(IPlayerInfoHolder playerInfoHolder)
             {
-
+                _playerInfoHolder = playerInfoHolder;
             }
 
             public override void Open(Dictionary<string, object> callData)
@@ -50,7 +54,17 @@ namespace UI.Controllers
 
             void EventAggHub<RestudyEvent>.ISubscribed.OnEvent()
             {
-                throw new System.NotImplementedException();
+                GoDown();
+            }
+
+            private void GoDown()
+            {
+                _playerInfoHolder.CurrentCourse = 0;
+                _playerInfoHolder.Points = 0;
+                _playerInfoHolder.UniversityPoints = 0;
+                _playerInfoHolder.TasksTaken = 0;
+                _playerInfoHolder.PrivateLife = _playerInfoHolder.MaxPrivateLife;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
 

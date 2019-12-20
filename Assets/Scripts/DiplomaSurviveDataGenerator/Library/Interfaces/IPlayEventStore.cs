@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace DiplomaSurviveDataGenerator
 {
-    public interface IPlayEventStore : IStore<PlayEvent, BaseContext>
+    public interface IPlayEventStore : IStore<PlayEvent, IPlayContext>
     { }
 }
