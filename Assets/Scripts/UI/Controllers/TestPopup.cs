@@ -74,16 +74,6 @@ namespace UI.Controllers
                 ConcreteView.SetSecondButtonText(_currentExamPage.RightButton.Title);
 
             }
-
-            void EventAggHub<SecondButtonClicked>.ISubscribed.OnEvent()
-            {
-                
-            }
-
-            void EventAggHub<FirstButtonClicked>.ISubscribed.OnEvent()
-            {
-               
-            }
         }
 
         public new class Scenario : Contractor.Scenario
