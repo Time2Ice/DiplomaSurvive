@@ -1,46 +1,21 @@
-﻿using DiplomaSurviveDataGenerator;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DiplomaSurviveDataGenerator;
 
 namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
 {
-    public class Play
+    public class ExamStore : BaseStore<IExam>
     {
-        protected IPlayContext _context;
-        protected INumberGenerator _numberGenerator;
-        public IStore<IExam> ExamStore { get; protected set; }
-        public IStore<ICheck> CheckStore { get; protected set; }
-        public IPlayEventStore EventStore { get; protected set; }
+        public ExamStore(INumberGenerator generator)
+            : base(GetExams(), generator)
+        { }
 
-        public Play(INumberGenerator numberGenerator, IPlayContext context)
+        private static List<IExam> GetExams()
         {
-            _numberGenerator = numberGenerator;
-            _context = context;
-            InitExamStore();
-            //InitCheckStore();
-        }
-        public void InitCheckStore()
-        {
-            CheckStore = new BaseStore<ICheck>()
-            {
-                new BaseCheck()
-                {
-                    //CheckChain = new CheckLastClickTime(_context)
-                    //{
-                    //    MinTimeAfterClick = 2,
-                    //    DeductionProbabilityMin = 0.004,
-                    //    MaxTimeAfterClick = 60,
-                    //    DeductionProbabilityMax = 0.002
-                    //}
-                }
-            };
-        }
-        public void InitExamStore()
-        {
-            ExamStore = new BaseStore<IExam>
+            return new List<IExam>
             {
                 new ExamTree()
                 {
@@ -69,5 +44,4 @@ namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
             };
         }
     }
-
 }
