@@ -8,7 +8,9 @@ namespace DiplomaSurviveDataGenerator
 {
     public interface IMainContext : IContext
     {
-        int? Level { get; set; }
+        int? Level { get; }
+        int Coins { get; set; }
         event ValueChanged OnLevelChanged;
+        event ValueChanged OnCoinsChanged;
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DiplomaSurviveDataGenerator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiplomaSurviveDataGenerator
+namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
 {
     public class Play
     {

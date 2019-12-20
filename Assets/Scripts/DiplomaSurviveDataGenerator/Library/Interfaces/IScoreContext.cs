@@ -11,7 +11,7 @@ namespace DiplomaSurviveDataGenerator
         int StudyScore { get; set; }
         int PersonalLifeScore { get; set; }
         int MaxPersonalLifeScore { get; set; }
-        int MaxStudyScore { get; set; }
+        int MaxStudyScore { get; }
 
         event ValueChanged OnStudyScoreChanged;
         event ValueChanged OnPersonalLifeScoreChanged;

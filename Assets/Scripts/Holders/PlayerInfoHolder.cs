@@ -6,7 +6,7 @@ namespace DefaultNamespace
 {
     public class PlayerInfoHolder : IPlayerInfoHolder
     {
-          
+
         public event Action<int, int> PersonalLifeChanged;
 
         public event Action<int> CoinsChanged;
@@ -15,10 +15,11 @@ namespace DefaultNamespace
 
         public event Action<int> MaxCourseChanged;
         public event Action<int> UniversityChanged;
-
+        public event Action<int> MaxPrivateLifeChanged;
+        public event Action<int> PointsChanged;
 
         private PlayerInfoDto _playerInfoDto;
-        
+
         public int[] Abilities
         {
 
@@ -46,8 +47,8 @@ namespace DefaultNamespace
                 _localDataProvider.Save(_playerInfoDto);
             }
         }
-        
-        public string[] Reasons 
+
+        public string[] Reasons
         {
 
             get => _playerInfoDto.reasons;
@@ -67,7 +68,7 @@ namespace DefaultNamespace
             get => _playerInfoDto.max_course;
             set
             {
-                if (_playerInfoDto.max_course==value)
+                if (_playerInfoDto.max_course == value)
                     return;
 
                 _playerInfoDto.max_course = value;
@@ -75,13 +76,13 @@ namespace DefaultNamespace
                 MaxCourseChanged?.Invoke(_playerInfoDto.max_course);
             }
         }
-        
+
         public int University
         {
             get => _playerInfoDto.university;
             set
             {
-                if (_playerInfoDto.university==value)
+                if (_playerInfoDto.university == value)
                     return;
 
                 _playerInfoDto.university = value;
@@ -94,7 +95,7 @@ namespace DefaultNamespace
             get => _playerInfoDto.coins;
             set
             {
-                if (_playerInfoDto.coins==value)
+                if (_playerInfoDto.coins == value)
                     return;
 
                 _playerInfoDto.coins = value;
@@ -102,17 +103,18 @@ namespace DefaultNamespace
                 CoinsChanged?.Invoke(_playerInfoDto.coins);
             }
         }
-        
+
         public int Points
         {
             get => _playerInfoDto.points;
             set
             {
-                if (_playerInfoDto.points==value)
+                if (_playerInfoDto.points == value)
                     return;
 
                 _playerInfoDto.points = value;
                 _localDataProvider.Save(_playerInfoDto);
+                PointsChanged?.Invoke(value);
             }
         }
 
@@ -135,7 +137,7 @@ namespace DefaultNamespace
             get => _playerInfoDto.private_life;
             set
             {
-                if (_playerInfoDto.private_life==value)
+                if (_playerInfoDto.private_life == value)
                     return;
 
                 _playerInfoDto.private_life = value;
@@ -155,7 +157,7 @@ namespace DefaultNamespace
                 _playerInfoDto.max_private_life = value;
                 _localDataProvider.Save(_playerInfoDto);
                 PersonalLifeChanged?.Invoke(_playerInfoDto.private_life, _playerInfoDto.max_private_life);
-
+                MaxPrivateLifeChanged?.Invoke(_playerInfoDto.max_private_life);
             }
         }
         public int CurrentCourse
@@ -164,12 +166,12 @@ namespace DefaultNamespace
             get => _playerInfoDto.current_course;
             set
             {
-                if (_playerInfoDto.current_course==value)
+                if (_playerInfoDto.current_course == value)
                     return;
 
                 _playerInfoDto.current_course = value;
                 _localDataProvider.Save(_playerInfoDto);
-                if (_playerInfoDto.current_course> _playerInfoDto.max_course)
+                if (_playerInfoDto.current_course > _playerInfoDto.max_course)
                 {
                     MaxCourse = _playerInfoDto.current_course;
                 }
@@ -183,14 +185,14 @@ namespace DefaultNamespace
             get => _playerInfoDto.possibility_to_stay;
             set
             {
-                if (_playerInfoDto.possibility_to_stay==value)
+                if (_playerInfoDto.possibility_to_stay == value)
                     return;
 
                 _playerInfoDto.possibility_to_stay = value;
                 _localDataProvider.Save(_playerInfoDto);
             }
         }
-        
+
         private readonly IAppStateHandler _appStateHandler;
         private readonly ILocalDataProvider _localDataProvider;
 
@@ -201,7 +203,7 @@ namespace DefaultNamespace
             _appStateHandler = appStateHandler;
             SetData();
         }
-        
+
         private void SetData()
         {
             if (!_appStateHandler.GetData(out PlayerInfoDto dto))
@@ -232,8 +234,8 @@ namespace DefaultNamespace
                 max_course = 0,
                 task_queue_capacity = 20,
                 abilities = new int[0],
-                courses= new int[0],
-                reasons=new string[] {"1"}
+                courses = new int[0],
+                reasons = new string[] { "1" }
             };
             return dto;
         }

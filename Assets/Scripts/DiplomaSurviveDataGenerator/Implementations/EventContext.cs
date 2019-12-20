@@ -1,4 +1,5 @@
-﻿using DiplomaSurviveDataGenerator;
+﻿using DefaultNamespace;
+using DiplomaSurviveDataGenerator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
 {
-    //public class PlayContext : BasePlayContext
-    //{
-    //}
+    public class EventContext : BaseEventContext
+    {
+
+    }
 }

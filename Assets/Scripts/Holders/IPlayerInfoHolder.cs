@@ -8,7 +8,9 @@ namespace DefaultNamespace
         event Action<int> CoinsChanged;
         event Action<int> CourseChanged;
         event Action<int> MaxCourseChanged;
-         event Action<int> UniversityChanged;
+        event Action<int> UniversityChanged;
+        event Action<int> MaxPrivateLifeChanged;
+        event Action<int> PointsChanged;
 
         int[] Abilities { get; set; }
         int[] Courses { get; set; }

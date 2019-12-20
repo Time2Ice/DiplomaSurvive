@@ -12,7 +12,7 @@ namespace DiplomaSurviveDataGenerator
         public string Title { get; set; }
         public string Description { get; set; }
         [field: NonSerialized]
-        public event ValueChanged OnCloseEvent;
+        public virtual event ValueChanged OnCloseEvent;
         public Action OnCloseFunc;
 
         public virtual void OnClose()

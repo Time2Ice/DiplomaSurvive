@@ -22,11 +22,4 @@ namespace DiplomaSurviveDataGenerator
         }
     }
 
-    public interface IPlayContext : IContext
-    {
-        IScoreContext Score { get; }
-        IMainContext Main { get; }
-        IEventContext Events { get; }
-        IStudyContext Study { get; }
-    }
 }

@@ -8,7 +8,7 @@ namespace DiplomaSurviveDataGenerator
 {
     public abstract class Context : IContext
     {
-        public event ValueChanged OnContextChanged;
+        public virtual event ValueChanged OnContextChanged;
 
         protected void ContextChanged()
         {

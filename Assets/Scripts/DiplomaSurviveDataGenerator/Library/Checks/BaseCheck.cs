@@ -12,7 +12,7 @@ namespace DiplomaSurviveDataGenerator
         public int Priority { get; set; } = int.MaxValue;
         public bool IsDirty { get; private set; } = true;
         [field:NonSerialized]
-        public event ValueChanged OnDirty;
+        public virtual event ValueChanged OnDirty;
         public DeductionType DeductionType { get; set; } = DeductionType.Undefined;
         public ICheckStep CheckChain 
         { 

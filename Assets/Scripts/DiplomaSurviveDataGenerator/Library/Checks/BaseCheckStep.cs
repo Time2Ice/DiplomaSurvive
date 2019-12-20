@@ -13,7 +13,7 @@ namespace DiplomaSurviveDataGenerator
         protected IPlayContext _context;
         public bool NeedCheck { get; protected set; }
         [field: NonSerialized]
-        public event ValueChanged OnNeedCheck;
+        public virtual event ValueChanged OnNeedCheck;
         public Func<double> CheckFunc;
         public TryHandleDelegate TryHandleFunc;
         public ICheckStep NextStep

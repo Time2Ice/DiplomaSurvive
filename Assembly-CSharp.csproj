@@ -85,8 +85,10 @@
     <Compile Include="Assets\Scripts\DataProvider\LocalDataProvider.cs" />
     <Compile Include="Assets\Scripts\DataProvider\LocalDataWriter.cs" />
     <Compile Include="Assets\Scripts\DataProvider\PathType.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\EventContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\MainContext.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\Play.cs" />
-    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\PlayContext.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\ScoreContext.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseCheck.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseCheckStep.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseDeductionCheck.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IMainContext.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\INumberDistribution.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\INumberGenerator.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IPlayContext.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IPlayEventsService.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IPlayEventStore.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Interfaces\IScoreContext.cs" />
@@ -345,6 +348,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.multiplayer-hlapi.Editor">
+      <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -353,15 +359,6 @@
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.multiplayer-hlapi.Editor">
-      <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
       <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
@@ -374,6 +371,12 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>

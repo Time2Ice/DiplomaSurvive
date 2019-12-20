@@ -50,10 +50,10 @@ namespace DiplomaSurviveDataGenerator
             }
         }
 
-        public event ValueChanged OnStudyScoreChanged;
-        public event ValueChanged OnPersonalLifeScoreChanged;
-        public event ValueChanged OnMaxPersonalLifeScoreChanged;
-        public event ValueChanged OnMaxStudyScoreChanged;
+        public virtual event ValueChanged OnStudyScoreChanged;
+        public virtual event ValueChanged OnPersonalLifeScoreChanged;
+        public virtual event ValueChanged OnMaxPersonalLifeScoreChanged;
+        public virtual event ValueChanged OnMaxStudyScoreChanged;
 
         public BaseScoreContext()
         {

@@ -20,6 +20,7 @@ using Manager;
 using Unity;
 using Assets.Scripts.UI.Controllers;
 using DiplomaSurviveDataGenerator;
+using Assets.Scripts.DiplomaSurviveDataGenerator.Implementations;
 
 namespace Installers
 {
@@ -51,11 +52,11 @@ namespace Installers
             Container.Bind(typeof(IStudyContext))
                   .To<BaseStudyContext>().AsSingle();
             Container.Bind(typeof(IMainContext))
-                  .To<BaseMainContext>().AsSingle();
+                  .To<MainContext>().AsSingle();
             Container.Bind(typeof(IEventContext))
-                  .To<BaseEventContext>().AsSingle();
+                  .To<EventContext>().AsSingle();
             Container.Bind(typeof(IScoreContext))
-                  .To<BaseScoreContext>().AsSingle();
+                  .To<ScoreContext>().AsSingle();
             Container.Bind(typeof(IPlayContext))
                   .To<BasePlayContext>().AsSingle();
             Container.Bind(typeof(INumberDistribution))
