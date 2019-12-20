@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace DiplomaSurviveDataGenerator
 {
-
     public interface IScoreContext : IContext
     {
         int StudyScore { get; set; }
@@ -14,9 +13,9 @@ namespace DiplomaSurviveDataGenerator
         int MaxPersonalLifeScore { get; set; }
         int MaxStudyScore { get; set; }
 
-        public event ValueChanged OnStudyScoreChanged;
-        public event ValueChanged OnPersonalLifeScoreChanged;
-        public event ValueChanged OnMaxPersonalLifeScoreChanged;
-        public event ValueChanged OnMaxStudyScoreChanged;
+        event ValueChanged OnStudyScoreChanged;
+        event ValueChanged OnPersonalLifeScoreChanged;
+        event ValueChanged OnMaxPersonalLifeScoreChanged;
+        event ValueChanged OnMaxStudyScoreChanged;
     }
 }

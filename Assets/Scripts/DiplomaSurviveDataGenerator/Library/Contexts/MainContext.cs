@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DiplomaSurviveDataGenerator
 {
-    public class MainContext : Context, IMainContext
+    public class BaseMainContext : Context, IMainContext
     {
         protected int? _level;
         public virtual int? Level
@@ -21,7 +21,7 @@ namespace DiplomaSurviveDataGenerator
 
         public event ValueChanged OnLevelChanged;
 
-        public MainContext()
+        public BaseMainContext()
         {
             OnLevelChanged += ContextChanged;
         }

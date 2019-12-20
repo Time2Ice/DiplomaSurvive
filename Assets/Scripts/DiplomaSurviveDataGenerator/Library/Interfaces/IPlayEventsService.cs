@@ -8,8 +8,8 @@ namespace DiplomaSurviveDataGenerator
 {
     public interface IPlayEventsService
     {
-        double NextTime { get; }
+        bool IsAvailable { get; }
+        double EventProbability { get; set; }
         PlayEvent GetEvent();
-        void GenerateNextTime();
     }
 }

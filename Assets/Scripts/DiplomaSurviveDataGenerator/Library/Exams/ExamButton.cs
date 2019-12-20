@@ -51,7 +51,7 @@ namespace DiplomaSurviveDataGenerator
         {
             CurrProbability = probability * DeductionCoefficient;
         }
-        public override ExamPage OnClickFunc (BaseContext context = null)
+        public override ExamPage OnClickFunc (IPlayContext context = null)
         {
             base.OnClickFunc(context);
             if (NextPage != null)

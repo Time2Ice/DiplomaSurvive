@@ -8,21 +8,25 @@ namespace DiplomaSurviveDataGenerator
 {
     public class PlayEventsService : IPlayEventsService
     {
-        private readonly BaseContext _context;
-        private readonly INumberDistribution _generator;
-        private readonly IPlayEventStore _eventsService;
-        public double NextTime { get; private set; } = 0;
+        private readonly IPlayContext _context;
+        private readonly INumberGenerator _generator;
 
-        public PlayEventsService(BaseContext context, INumberDistribution generator, IPlayEventStore eventService)
+        private readonly IPlayEventStore _eventsService;
+        public double EventProbability { get; set; } = 0.00001;
+
+        public bool IsAvailable
         {
-            _context = context ?? throw new ArgumentNullException();
-            _generator = generator ?? throw new ArgumentNullException();
-            _eventsService = eventService ?? throw new ArgumentNullException();
+            get
+            {
+                return EventProbability >= _generator.NextDouble01();
+            }
         }
 
-        public void GenerateNextTime()
+        public PlayEventsService(IPlayContext context, INumberGenerator generator, IPlayEventStore eventService)
         {
-            NextTime = _context.Time.Current + _generator.Next();
+            _context = context;
+            _generator = generator ?? new DefaultNumberGenerator();
+            _eventsService = eventService ?? throw new ArgumentNullException();
         }
 
         public PlayEvent GetEvent()

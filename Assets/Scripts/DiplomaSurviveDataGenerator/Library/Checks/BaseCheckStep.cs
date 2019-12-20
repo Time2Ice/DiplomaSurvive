@@ -10,7 +10,7 @@ namespace DiplomaSurviveDataGenerator
     {
         protected ICheckStep _nextStep;
         [field: NonSerialized]
-        protected BaseContext _context;
+        protected IPlayContext _context;
         public bool NeedCheck { get; protected set; }
         [field: NonSerialized]
         public event ValueChanged OnNeedCheck;
@@ -24,7 +24,7 @@ namespace DiplomaSurviveDataGenerator
             }
         }
 
-        public BaseCheckStep(BaseContext context)
+        public BaseCheckStep(IPlayContext context)
         {
             _context = context;
         }

@@ -16,5 +16,11 @@ namespace DiplomaSurviveDataGenerator
         {
             return Min + (1 - _rnd.NextDouble()) * (Max - Min);
         }
+
+        public UniformDistribution(double min = 0, double max = double.MaxValue)
+        {
+            Min = min;
+            Max = max;
+        }
     }
 }

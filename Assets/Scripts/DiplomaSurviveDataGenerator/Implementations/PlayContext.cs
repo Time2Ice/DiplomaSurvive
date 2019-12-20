@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
 {
-    public class PlayContext : BaseContext
-    {
-    }
+    //public class PlayContext : BasePlayContext
+    //{
+    //}
 }

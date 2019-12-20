@@ -45,22 +45,33 @@ namespace Installers
 
         private void BindDataGenerator()
         {
-            var baseContext = new BaseContext()
-            {
-                Main = new MainContext(null)
-            };
-            var play = new Play(null, baseContext);
-            var examStore = play.ExamStore;
 
             Container.Bind(typeof(INumberGenerator))
                   .To<DefaultNumberGenerator>().AsSingle();
+            Container.Bind(typeof(IStudyContext))
+                  .To<BaseStudyContext>().AsSingle();
+            Container.Bind(typeof(IMainContext))
+                  .To<BaseMainContext>().AsSingle();
+            Container.Bind(typeof(IEventContext))
+                  .To<BaseEventContext>().AsSingle();
+            Container.Bind(typeof(IScoreContext))
+                  .To<BaseScoreContext>().AsSingle();
+            Container.Bind(typeof(IPlayContext))
+                  .To<BasePlayContext>().AsSingle();
+            Container.Bind(typeof(INumberDistribution))
+                  .To<UniformDistribution>().AsSingle();
+            Container.Bind(typeof(Play)).ToSelf().AsSingle();
+            var play = Container.Resolve<Play>();
+            var examStore = play.ExamStore;
 
             Container.Bind(typeof(IExamService))
-               .To<ExamService>().AsSingle().WithArguments(baseContext, examStore);
+               .To<ExamService>().AsSingle().WithArguments(examStore);
         }
 
         private void BindHandlers()
         {
+            Container.Bind(typeof(IPlayStateHandler))
+                .To<PlayStateHandler>().AsSingle();
             Container.Bind(typeof(IPlayerInfoHolder))
                 .To<PlayerInfoHolder>().AsSingle();
             Container.Bind(typeof(IGameInfoHolder))
