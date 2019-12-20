@@ -912,14 +912,6 @@
       <Project>{36FEE34C-812F-2D37-F1FC-AEBE11776B45}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
-      <Project>{77631515-6F67-16E4-59A0-FE2EDDF1FAB2}</Project>
-      <Name>Zenject-PoolMonitor-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject.csproj">
-      <Project>{885BF002-F0BB-5DC6-8656-225E0BC5C07E}</Project>
-      <Name>Zenject</Name>
-    </ProjectReference>
     <ProjectReference Include="UniRx.Async.csproj">
       <Project>{FBDB3BF6-4639-EE36-5B8A-32E19CC48DE9}</Project>
       <Name>UniRx.Async</Name>
@@ -927,6 +919,14 @@
     <ProjectReference Include="UniRx.Async.Editor.csproj">
       <Project>{A8C543C1-ABC5-4006-A635-2307BA2C384C}</Project>
       <Name>UniRx.Async.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{77631515-6F67-16E4-59A0-FE2EDDF1FAB2}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{885BF002-F0BB-5DC6-8656-225E0BC5C07E}</Project>
+      <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
