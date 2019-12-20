@@ -33,8 +33,9 @@ namespace DiplomaSurviveDataGenerator
 
         public virtual double Check()
         {
-            IsDirty = false;
-            return CheckChain?.Check() ?? 0;
+            var result = CheckChain?.Check() ?? 0;
+            IsDirty = result != 0;
+            return result;
         }
         public virtual void NeedCheck()
         {

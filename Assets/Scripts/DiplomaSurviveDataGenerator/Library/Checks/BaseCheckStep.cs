@@ -46,10 +46,10 @@ namespace DiplomaSurviveDataGenerator
             }
 
             double probability = 0;
-            NeedCheck = false;
 
             if (TryHandle(ref probability) || _nextStep == null)
             {
+                NeedCheck = false;
                 return probability;
             }
             return _nextStep.Check();
