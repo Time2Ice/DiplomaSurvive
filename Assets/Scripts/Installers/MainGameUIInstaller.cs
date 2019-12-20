@@ -38,7 +38,6 @@ namespace Installers
                 .To<LocalDataProvider>().AsSingle();
             Container.Bind(typeof(ILocalDataWriter))
                 .To<LocalDataWriter>().AsSingle();
-            Container.Bind(typeof(IPlayStateHandler)).To<PlayStateHandler>().AsSingle();
             BindHandlers();
             BindDataGenerator();
         }
@@ -47,24 +46,25 @@ namespace Installers
         {
             Container.Bind(typeof(INumberGenerator))
                   .To<DefaultNumberGenerator>().AsSingle();
+            Container.Bind(typeof(INumberDistribution))
+                .To<UniformDistribution>().AsSingle();
+
             Container.Bind(typeof(IStudyContext))
                   .To<BaseStudyContext>().AsSingle();
             Container.Bind(typeof(IMainContext))
                   .To<MainContext>().AsSingle();
             Container.Bind(typeof(IEventContext))
-                  .To<EventContext>().AsSingle();
+                  .To<BaseEventContext>().AsSingle();
             Container.Bind(typeof(IScoreContext))
                   .To<ScoreContext>().AsSingle();
             Container.Bind(typeof(IPlayContext))
                   .To<BasePlayContext>().AsSingle();
-            Container.Bind(typeof(INumberDistribution))
-                  .To<UniformDistribution>().AsSingle();
-            Container.Bind(typeof(Play)).ToSelf().AsSingle();
-            var play = Container.Resolve<Play>();
-            var examStore = play.ExamStore;
+
+            Container.Bind(typeof(IStore<IExam>))
+                .To<ExamStore>().AsSingle();
 
             Container.Bind(typeof(IExamService))
-               .To<ExamService>().AsSingle().WithArguments(examStore);
+               .To<ExamService>().AsSingle();
         }
 
         private void BindHandlers()
