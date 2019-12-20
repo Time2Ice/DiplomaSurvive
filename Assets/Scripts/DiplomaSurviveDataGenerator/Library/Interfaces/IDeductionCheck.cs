@@ -8,7 +8,7 @@ namespace DiplomaSurviveDataGenerator
 {
     public interface IDeductionCheck
     {
-        Deduction CheckForDeduction();
+        string CheckForDeduction();
         bool IsNecessary { get; }
     }
 }

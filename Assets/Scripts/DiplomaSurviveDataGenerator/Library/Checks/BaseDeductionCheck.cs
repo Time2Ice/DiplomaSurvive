@@ -38,7 +38,7 @@ namespace DiplomaSurviveDataGenerator
             InitChecks(checks.GetAll());
         }
 
-        public Deduction CheckForDeduction()
+        public string CheckForDeduction()
         {
             Deduction deduction = null;
             var currChecks = _checks.Where(check => check.IsDirty);
@@ -60,7 +60,7 @@ namespace DiplomaSurviveDataGenerator
             {
                 IsNecessary = false;
             }
-            return deduction;
+            return deduction.Id;
         }
 
         private void NeedCheck()
