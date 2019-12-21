@@ -32,6 +32,12 @@ namespace Assets.Scripts.Handlers
             for(int i=0; i<_playerInfoHolder.TasksTaken;i++)
             {
                 _takenTasksTimes.Enqueue(_gameInfoHolder.TaskTimes[UnityEngine.Random.Range(0, _gameInfoHolder.TaskTimes.Length)]);
+
+            }
+            if (_timer == null&& _playerInfoHolder.TasksTaken>0)
+
+            {
+                _timer = _asyncProcessor.StartCoroutine(Timer());
             }
         }
 
