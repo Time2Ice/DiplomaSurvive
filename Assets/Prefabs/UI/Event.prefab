@@ -522,7 +522,7 @@ MonoBehaviour:
     _referenceResolution: {x: 1080, y: 1920}
     _renderMode: 0
     _screenMatchMode: 0
-    _orderRange: 1
+    _orderRange: 11
     _pixelsPerUnit: 100
     _alignmentType: 20
     _cameraType: 0

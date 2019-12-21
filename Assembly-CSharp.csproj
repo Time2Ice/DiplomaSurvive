@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\DataProvider\PathType.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\Answers.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\ChecksStore.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\EventsStore.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\ExamPages.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\ExamStore.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\ExclusionStore.cs" />

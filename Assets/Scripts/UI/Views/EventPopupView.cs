@@ -19,7 +19,6 @@ namespace Assets.Scripts.UI.Views
         [SerializeField] private Button _yesButton;
         [SerializeField] private Button _noButton;
         public Func<EventPopup.SelectAction> Event1 { get; set; }
-       
         public override void Initialize(IWindowInfrastructure infrastructure, RectTransform parent)
         {
             base.Initialize(infrastructure, parent);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace DiplomaSurviveDataGenerator
 {
@@ -20,6 +21,7 @@ namespace DiplomaSurviveDataGenerator
                 return null;
             }
             int num = _numberGen.Next(availableEl.Count);
+            Debug.Log(num + "|");
             return availableEl[num];
         }
        

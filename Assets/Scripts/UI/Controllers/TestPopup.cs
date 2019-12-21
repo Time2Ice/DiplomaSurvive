@@ -47,6 +47,7 @@ namespace UI.Controllers
                         break;
                 }
                 _currentExamPage = _currentExam.Start();
+                _playerInfoHolder.IsClassroom = false;
                 ChangeData();
             }
 
@@ -92,6 +93,7 @@ namespace UI.Controllers
                 _playerInfoHolder.UniversityPoints = 0;
                 _playerInfoHolder.TasksTaken = 0;
                 _playerInfoHolder.PrivateLife = _playerInfoHolder.MaxPrivateLife;
+                _playerInfoHolder.IsClassroom = false;
                 if (_type == TestType.EIT)
                 {
                     _reasonHandler.ShowReason(_exclusionService.GetExclusion(ExclusionType.FailEIT)?.Id);
@@ -114,6 +116,7 @@ namespace UI.Controllers
                         _playerInfoHolder.CurrentCourse = _playerInfoHolder.CurrentCourse+1;
                         break;
                 }
+                _playerInfoHolder.IsClassroom = true;
             }
 
 

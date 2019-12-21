@@ -19,6 +19,8 @@ namespace DefaultNamespace
         public event Action<int> PointsChanged;
         public event Action<int> ChangedPosition;
 
+        public bool IsClassroom { get; set; } = false;
+
 
         private PlayerInfoDto _playerInfoDto;
 

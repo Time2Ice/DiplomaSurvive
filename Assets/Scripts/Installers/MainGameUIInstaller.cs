@@ -69,7 +69,11 @@ namespace Installers
                 .To<ExclusionStore>().AsSingle();
             Container.Bind(typeof(IStore<BaseCheck>))
                 .To<ChecksStore>().AsSingle();
+            Container.Bind(typeof(IPlayEventStore))
+                .To<EventsStore>().AsSingle();
 
+            Container.Bind(typeof(IPlayEventsService))
+                .To<PlayEventsService>().AsSingle();
             Container.Bind(typeof(IExclusionService))
                 .To<ExclusionService>().AsSingle();
             Container.Bind(typeof(IExclusionCheck))
@@ -114,6 +118,7 @@ namespace Installers
             BindView(WindowType.SendDown);
             BindView(WindowType.Characters);
             BindView(WindowType.Test);
+            BindView(WindowType.Event);
         }
 
         protected override void BindControllers()
@@ -153,6 +158,8 @@ namespace Installers
             Container.Bind(typeof(TestPopup.Controller), typeof(TestPopup.FirstButtonClicked.ISubscribed), typeof(TestPopup.SecondButtonClicked.ISubscribed))
               .To<TestPopup.Controller>().AsSingle();
 
+            Container.Bind(typeof(EventPopup.Controller), typeof(EventPopup.SelectAction.ISubscribed))
+              .To<EventPopup.Controller>().AsSingle();
         }
 
         protected override void BindScenarios()
@@ -178,6 +185,7 @@ namespace Installers
             Container.Bind(typeof(GoUp.Scenario)).To<GoUp.Scenario>().AsSingle();
             Container.Bind(typeof(Characters.Scenario)).To<Characters.Scenario>().AsSingle();
             Container.Bind(typeof(TestPopup.Scenario)).To<TestPopup.Scenario>().AsSingle();
+            Container.Bind(typeof(EventPopup.Scenario)).To<EventPopup.Scenario>().AsSingle();
 
         }
 
@@ -207,6 +215,7 @@ namespace Installers
 
             Container.Bind<TestPopup.FirstButtonClicked>().AsSingle();
             Container.Bind<TestPopup.SecondButtonClicked>().AsSingle();
+            Container.Bind<EventPopup.SelectAction>().AsSingle();
         }
 
         public override IWindowController CreateWindowController(WindowType type)
@@ -235,6 +244,8 @@ namespace Installers
                     return Container.Resolve<Characters.Controller>();
                 case WindowType.Test:
                     return Container.Resolve<TestPopup.Controller>();
+                case WindowType.Event:
+                    return Container.Resolve<EventPopup.Controller>();
                 default:
                     throw new Exception($"Invalid window type : {type}");
             }
@@ -266,6 +277,8 @@ namespace Installers
                     return Container.Resolve<Characters.Scenario>();
                 case WindowType.Test:
                     return Container.Resolve<TestPopup.Scenario>();
+                case WindowType.Event:
+                    return Container.Resolve<EventPopup.Scenario>();
 
                 default:
                     throw new Exception($"Invalid scenario type : {type}");

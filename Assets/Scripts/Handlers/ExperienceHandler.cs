@@ -53,7 +53,6 @@ namespace Assets.Scripts.Handlers
                     {"Test", type}
                 };
             _windowHandler.OpenWindow(UiScenario.Concrete.Data.WindowType.Test, data);
-
         }
     }
 }
