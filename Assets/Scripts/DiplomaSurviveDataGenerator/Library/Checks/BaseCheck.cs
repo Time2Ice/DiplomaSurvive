@@ -11,10 +11,10 @@ namespace DiplomaSurviveDataGenerator
     {
         private ICheckStep _checkChain;
         public int Priority { get; set; } = int.MaxValue;
-        public bool IsDirty { get; private set; } = true;
+        public bool IsDirty { get; protected set; } = true;
         [field:NonSerialized]
         public virtual event ValueChanged OnDirty;
-        public ExclusionType ExclusionType { get; set; } = ExclusionType.Undefined;
+        public virtual ExclusionType ExclusionType { get; set; } = ExclusionType.Undefined;
         public ICheckStep CheckChain 
         { 
             protected get

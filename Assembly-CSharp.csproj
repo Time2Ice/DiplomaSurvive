@@ -98,6 +98,7 @@
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseCheck.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseCheckStep.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseExclusionCheck.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\NeedDeductionCheck.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\PersonalLifeScoreShortageCheckStep.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\StudyScoreExcessCheckStep.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\StudyScoreShortageCheckStep.cs" />
@@ -573,6 +574,9 @@
     <Reference Include="Zenject-usage">
       <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/PackageCache/com.unity.ads@2.0.8/UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
@@ -581,6 +585,9 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>C:/Users/Acer/Desktop/MSE/Study/Game Development/DiplomaSurvive/Library/PackageCache/com.unity.purchasing@2.0.6/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
