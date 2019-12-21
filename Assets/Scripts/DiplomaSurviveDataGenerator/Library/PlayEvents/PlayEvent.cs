@@ -14,6 +14,7 @@ namespace DiplomaSurviveDataGenerator
         {
             return IsAvailableFunc?.Invoke(context) ?? true;
         }
+        public virtual string Result { get; set; }
         PlayEvent ICloneable<PlayEvent>.Clone()
         {
             ICloneable<Button<Page>> cloneable;

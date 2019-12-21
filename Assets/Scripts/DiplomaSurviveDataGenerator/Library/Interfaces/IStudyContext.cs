@@ -8,5 +8,9 @@ namespace DiplomaSurviveDataGenerator
 {
     public interface IStudyContext
     {
+        bool HasBook { get; set; }
+        ExclusionType NeedExclusion { get; set; }
+        event ValueChanged OnHasBookChanged;
+        event ValueChanged OnNeedExclusionChanged;
     }
 }

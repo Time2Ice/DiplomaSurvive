@@ -9,12 +9,16 @@ namespace DiplomaSurviveDataGenerator
     [Serializable]
     public class Button<T> : Button, ICloneable<Button<T>>
     {
-        public Func<T> ClickFuncReturn;
+        public Func<IPlayContext, T> ClickFuncReturn;
         [field: NonSerialized]
         public override event ValueChanged OnClickEvent;
         public virtual T OnClickFunc(IPlayContext context = null)
         {
             OnClickEvent?.Invoke();
+            if (ClickFuncReturn != null)
+            {
+                return ClickFuncReturn.Invoke(context);
+            }
             return default(T);
         }
 
@@ -32,13 +36,14 @@ namespace DiplomaSurviveDataGenerator
     [Serializable]
     public class Button : ICloneable<Button>
     {
-        public Action ClickFunc;
+        public Action<IPlayContext> ClickFunc;
         public string Title { get; set; }
         [field:NonSerialized]
         public virtual event ValueChanged OnClickEvent;
 
         public virtual void OnClick(IPlayContext context = null)
         {
+            ClickFunc?.Invoke(context);
             OnClickEvent?.Invoke();
         }
         Button ICloneable<Button>.Clone()

@@ -38,6 +38,7 @@ namespace DiplomaSurviveDataGenerator
         public BaseMainContext()
         {
             OnLevelChanged += ContextChanged;
+            OnCoinsChanged += ContextChanged;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace DiplomaSurviveDataGenerator
         Undefined,
         FailSession,
         FailEIT,
-        PersonalLife
+        PersonalLife,
+        Professor
     }
 }

@@ -10,7 +10,7 @@ namespace DiplomaSurviveDataGenerator
     public class ActionPage<TButton> : Page, ICloneable<ActionPage<TButton>>
         where TButton : Button, ICloneable<TButton>
     {
-        public virtual List<TButton> Buttons { get; protected set; } = new List<TButton>();
+        public virtual List<TButton> Buttons { get; set; } = new List<TButton>();
         public virtual void AddButton(TButton button)
         {
             Buttons.Add(button);
