@@ -293,11 +293,12 @@ namespace DefaultNamespace
 
         private void SetData()
         {
-          /*  if (!_appStateHandler.GetData(out PlayerInfoDto dto))
+            if (!_appStateHandler.GetData(out PlayerInfoDto dto))
             {
                 if (_localDataProvider.Exist<PlayerInfoDto>())
                 {
                     dto = _localDataProvider.Load<PlayerInfoDto>();
+                    _playerInfoDto = dto;
                     _requests.Authenticate();
                 }
                 else
@@ -306,11 +307,11 @@ namespace DefaultNamespace
                     _localDataProvider.Save(dto);
                     _requests.SignInRequest();
                 }
-            }*/
+            }
           
-            var dto = CreatePlayerInfo();
-            _playerInfoDto = dto;
-            _requests.SignInRequest();
+           // var dto = CreatePlayerInfo();
+          //  _playerInfoDto = dto;
+           // _requests.SignInRequest();
         }
 
         private PlayerInfoDto CreatePlayerInfo()

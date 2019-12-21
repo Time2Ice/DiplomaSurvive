@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Handlers;
 using Assets.Scripts.Prefabs;
 using Assets.Scripts.UI.Views;
+using DefaultNamespace;
 using EventAggregator;
 using Pool;
 using UiScenario;
@@ -25,20 +26,29 @@ namespace Assets.Scripts.UI.Controllers
 
             private Queue<Task> _tasks=new Queue<Task>();
 
-            Controller(UnityPool pool, ITasksHandler tasksHandler, ITaskMessagesHandler taskMessagesHandler, IPersonalLifeHandler personalLifeHandler)
+            IPlayerInfoHolder _playerInfoHolder;
+
+            Controller(IPlayerInfoHolder playerInfoHolder, UnityPool pool, ITasksHandler tasksHandler, ITaskMessagesHandler taskMessagesHandler, IPersonalLifeHandler personalLifeHandler)
             {
                 _pool = pool;
                 _taskMessages=new TaskMessage[3];
                 _taskMessagesHandler = taskMessagesHandler;
                 _personalLifeHandler = personalLifeHandler;
                 _tasksHandler = tasksHandler;
+                _playerInfoHolder = playerInfoHolder;
                 _taskMessagesHandler.AddMessage += ShowTaskMessage;
                 _tasksHandler.CompleteTask += HideTask;
+               
             }
 
             public override void Open(Dictionary<string, object> callData)
             {
-                
+                for (int i = 0; i < _playerInfoHolder.TasksTaken; i++)
+                {
+                    _playerInfoHolder.TasksTaken = _playerInfoHolder.TasksTaken - 1;
+                    _tasksHandler.TakeTask(1);
+                    ShowTask();
+                }
             }
 
             private void ShowTaskMessage(int teacherNum)
