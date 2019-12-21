@@ -92,7 +92,14 @@ namespace UI.Controllers
                 _playerInfoHolder.UniversityPoints = 0;
                 _playerInfoHolder.TasksTaken = 0;
                 _playerInfoHolder.PrivateLife = _playerInfoHolder.MaxPrivateLife;
-                _reasonHandler.ShowReason(_exclusionService.GetExclusion(ExclusionType.FailEIT)?.Id);
+                if (_type == TestType.EIT)
+                {
+                    _reasonHandler.ShowReason(_exclusionService.GetExclusion(ExclusionType.FailEIT)?.Id);
+                }
+                if (_type == TestType.Session)
+                {
+                    _reasonHandler.ShowReason(_exclusionService.GetExclusion(ExclusionType.FailSession)?.Id);
+                }
             }
 
             private void GoUp()

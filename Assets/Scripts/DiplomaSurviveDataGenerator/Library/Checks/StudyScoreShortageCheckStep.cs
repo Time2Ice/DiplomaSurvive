@@ -19,10 +19,10 @@ namespace DiplomaSurviveDataGenerator
         {
             if (_context.Score.StudyScore <= MinScore)
             {
+                probability = ExclusionProbability;
                 return false;
             }
 
-            probability = ExclusionProbability;
             return true;
         }
         public override BaseCheckStep Clone()

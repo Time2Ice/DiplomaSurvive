@@ -13,6 +13,6 @@ namespace DiplomaSurviveDataGenerator
         public string Description { get; set; }
         public int Coefficient { get; set; } = 1;
         public int? Level { get; set; }
-        public ExclusionType Type { get; set; }
+        public List<ExclusionType> Types { get; set; } = new List<ExclusionType>();
     }
 }

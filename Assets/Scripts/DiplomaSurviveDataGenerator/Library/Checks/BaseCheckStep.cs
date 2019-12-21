@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace DiplomaSurviveDataGenerator
 {
@@ -54,13 +55,10 @@ namespace DiplomaSurviveDataGenerator
             }
             return _nextStep.Check();
         }
-        public void AskForCheck()
+        public virtual void AskForCheck()
         {
-            if (NeedCheck == false)
-            {
-                OnNeedCheck?.Invoke();
-                NeedCheck = true;
-            }
+            OnNeedCheck?.Invoke();
+            NeedCheck = true;
         }
         protected virtual bool TryHandle(ref double probability)
         {

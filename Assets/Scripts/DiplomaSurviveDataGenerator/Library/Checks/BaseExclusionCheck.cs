@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace DiplomaSurviveDataGenerator
 {
@@ -42,7 +43,6 @@ namespace DiplomaSurviveDataGenerator
         {
             Exclusion exclusion = null;
             var currChecks = _checks.Where(check => check.IsDirty);
-
             foreach(var check in currChecks)
             {
                 if (check.Check() <= _generator.NextDouble01())
@@ -59,6 +59,7 @@ namespace DiplomaSurviveDataGenerator
             if (exclusion == null)
             {
                 IsNecessary = false;
+                return null;
             }
             return exclusion.Id;
         }

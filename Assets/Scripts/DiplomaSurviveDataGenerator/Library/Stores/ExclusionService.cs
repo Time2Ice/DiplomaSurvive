@@ -20,7 +20,7 @@ namespace DiplomaSurviveDataGenerator
 
         public Exclusion GetExclusion(ExclusionType type, int? level = null)
         {
-            var exclusions = _exclusionStore.GetAll().Where(d => d.Type == type);
+            var exclusions = _exclusionStore.GetAll().Where(d => d.Types.Contains(type));
             if (level.HasValue)
             {
                 exclusions = exclusions.Where(d => d.Level == level || d.Level <= 0);

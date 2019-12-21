@@ -10,7 +10,7 @@ namespace DiplomaSurviveDataGenerator
     {
         None,
         Undefined,
-        FailExam,
+        FailSession,
         FailEIT,
         PersonalLife
     }

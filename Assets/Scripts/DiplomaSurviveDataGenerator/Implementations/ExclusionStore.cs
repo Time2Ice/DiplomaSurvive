@@ -24,22 +24,42 @@ namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
         public static List<Exclusion> InitExclusions()
         {
             Dictionary<ExclusionType, string> types = new Dictionary<ExclusionType, string>();
-            foreach(var type in Enum.GetValues(typeof(ExclusionType)).Cast<ExclusionType>())
+            foreach (var type in Enum.GetValues(typeof(ExclusionType)).Cast<ExclusionType>())
             {
                 types.Add(type, "Exclusion due to ");
             }
             types[ExclusionType.FailEIT] += "EIT failure";
+            types[ExclusionType.FailSession] += "Session failure";
+            types[ExclusionType.PersonalLife] += "Personal reasons";
 
-            return new List<Exclusion>()
+            var list = new List<Exclusion>()
             {
                 new Exclusion()
                 {
-                    Id = "0001",
                     Title = types[ExclusionType.FailEIT],
-                    Type = ExclusionType.FailEIT,
+                    Types = new List<ExclusionType>(){ ExclusionType.FailEIT },
                     Description = "Unfortunately, you could not even enroll in a university. You failed external independent testing.",
-                }
+                },
+                new Exclusion()
+                {
+                    Title = types[ExclusionType.FailSession],
+                    Types = new List<ExclusionType>(){ ExclusionType.FailSession },
+                    Description = "The teacher liked you too much. And he decided to flunk you so that no one would think that he has favorites.",
+                },
+                new Exclusion()
+                {
+                    Title = types[ExclusionType.PersonalLife],
+                    Types = new List<ExclusionType>(){ ExclusionType.PersonalLife },
+                    Description = "You studied too much, because of this the girl left you. You were upset and could not finish the tasks on time.",
+                },
             };
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i].Id = (1000 + i).ToString();
+            }
+
+            return list;
         }
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\DataProvider\LocalDataWriter.cs" />
     <Compile Include="Assets\Scripts\DataProvider\PathType.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\Answers.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\ChecksStore.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\ExamPages.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\ExamStore.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Implementations\ExclusionStore.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseCheckStep.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\BaseExclusionCheck.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\PersonalLifeScoreShortageCheckStep.cs" />
+    <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\StudyScoreExcessCheckStep.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Checks\StudyScoreShortageCheckStep.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Contexts\BaseContext.cs" />
     <Compile Include="Assets\Scripts\DiplomaSurviveDataGenerator\Library\Contexts\BaseEventContext.cs" />

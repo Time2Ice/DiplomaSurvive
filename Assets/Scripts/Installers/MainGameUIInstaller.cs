@@ -20,6 +20,7 @@ using Assets.Scripts.UI.Controllers;
 using DiplomaSurviveDataGenerator;
 using Assets.Scripts.DiplomaSurviveDataGenerator.Implementations;
 using UnityEngine;
+using Zenject;
 
 namespace Installers
 {
@@ -66,12 +67,19 @@ namespace Installers
                 .To<ExamStore>().AsSingle();
             Container.Bind(typeof(IStore<Exclusion>))
                 .To<ExclusionStore>().AsSingle();
+            Container.Bind(typeof(IStore<BaseCheck>))
+                .To<ChecksStore>().AsSingle();
 
             Container.Bind(typeof(IExclusionService))
                 .To<ExclusionService>().AsSingle();
+            Container.Bind(typeof(IExclusionCheck))
+                .To<BaseExclusionCheck>().AsSingle();
 
             Container.Bind(typeof(IExamService))
                .To<ExamService>().AsSingle();
+
+            Container.Bind<ITickable>()
+                .To<CheckGoDownHandler>().AsSingle();
         }
 
         private void BindHandlers()

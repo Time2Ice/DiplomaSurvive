@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace DiplomaSurviveDataGenerator
 {
@@ -31,6 +32,29 @@ namespace DiplomaSurviveDataGenerator
             }
         }
 
+        public BaseCheck(ExclusionType exclusionType = ExclusionType.Undefined, List<ICheckStep> checkSteps = null)
+        {
+            if (checkSteps != null)
+            {
+                ICheckStep lastStep = null;
+                foreach(var step in checkSteps)
+                {
+                    if (lastStep != null)
+                    {
+                        lastStep.SetNextStep(step);
+                    }
+                    else
+                    {
+                        CheckChain = step;
+                        lastStep = CheckChain;
+                        continue;
+                    }
+                    lastStep = step;
+                }
+            }
+            ExclusionType = exclusionType;
+        }
+
         public virtual double Check()
         {
             var result = CheckChain?.Check() ?? 0;
@@ -39,11 +63,8 @@ namespace DiplomaSurviveDataGenerator
         }
         public virtual void NeedCheck()
         {
-            if (IsDirty == false)
-            {
-                OnDirty?.Invoke();
-                IsDirty = true;
-            }
+            OnDirty?.Invoke();
+            IsDirty = true;
         }
         BaseCheck ICloneable<BaseCheck>.Clone()
         {
