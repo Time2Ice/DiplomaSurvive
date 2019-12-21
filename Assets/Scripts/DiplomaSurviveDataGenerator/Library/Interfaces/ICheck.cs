@@ -8,7 +8,7 @@ namespace DiplomaSurviveDataGenerator
 {
     public interface ICheck
     {
-        DeductionType DeductionType { get; set; }
+        ExclusionType ExclusionType { get; set; }
         ICheckStep CheckChain { set; }
 
         double Check();

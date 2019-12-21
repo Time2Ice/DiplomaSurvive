@@ -21,14 +21,17 @@ namespace UI.Controllers
             private ExamPage _currentExamPage;
             public override WindowType Type => WindowType.Test;
             private TestType _type;
-            private IPlayerInfoHolder _playerInfoHolder;
-            private IReasonHandler _reasonHandler;
+            private readonly IPlayerInfoHolder _playerInfoHolder;
+            private readonly IReasonHandler _reasonHandler;
+            private readonly IExclusionService _exclusionService;
 
-            public Controller(IExamService examService, IPlayerInfoHolder playerInfoHolder, IReasonHandler reasonHadler)
+            public Controller(IExamService examService, IPlayerInfoHolder playerInfoHolder, 
+                IReasonHandler reasonHadler, IExclusionService exclusionService)
             {
                 _playerInfoHolder = playerInfoHolder;
                 _examService = examService;
                 _reasonHandler = reasonHadler;
+                _exclusionService = exclusionService;
             }
 
             public override void Open(Dictionary<string, object> callData)
@@ -89,7 +92,7 @@ namespace UI.Controllers
                 _playerInfoHolder.UniversityPoints = 0;
                 _playerInfoHolder.TasksTaken = 0;
                 _playerInfoHolder.PrivateLife = _playerInfoHolder.MaxPrivateLife;
-                _reasonHandler.ShowReason("1");
+                _reasonHandler.ShowReason(_exclusionService.GetExclusion(ExclusionType.FailEIT)?.Id);
             }
 
             private void GoUp()

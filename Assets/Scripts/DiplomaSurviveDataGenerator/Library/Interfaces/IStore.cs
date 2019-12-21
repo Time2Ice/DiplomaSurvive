@@ -16,7 +16,7 @@ namespace DiplomaSurviveDataGenerator
         T Get();
         void Add(T element);
         T GetByIndex(int index);
-        ICollection<T> GetAll();
+        List<T> GetAll();
         bool Remove(T element);
     }
 }

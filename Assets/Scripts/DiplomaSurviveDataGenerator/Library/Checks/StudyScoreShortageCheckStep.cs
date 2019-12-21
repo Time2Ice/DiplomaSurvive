@@ -8,7 +8,7 @@ namespace DiplomaSurviveDataGenerator
 {
     public class StudyScoreShortageCheckStep : BaseCheckStep
     {
-        public double DeductionProbability { get; set; } = 1;
+        public double ExclusionProbability { get; set; } = 1;
         public int MinScore { get; set; } = 0;
 
         public StudyScoreShortageCheckStep(IPlayContext context) : base(context)
@@ -22,7 +22,7 @@ namespace DiplomaSurviveDataGenerator
                 return false;
             }
 
-            probability = DeductionProbability;
+            probability = ExclusionProbability;
             return true;
         }
         public override BaseCheckStep Clone()
@@ -30,7 +30,7 @@ namespace DiplomaSurviveDataGenerator
             return new PersonalLifeScoreShortageCheckStep(_context)
             {
                 NextStep = _nextStep.Clone(),
-                DeductionProbability = DeductionProbability,
+                ExclusionProbability = ExclusionProbability,
                 MinScore = MinScore
             };
         }

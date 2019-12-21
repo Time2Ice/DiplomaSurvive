@@ -8,7 +8,7 @@ namespace DiplomaSurviveDataGenerator
 {
     public class BaseEventContext : Context, IEventContext
     {
-        public event Action<DeductionType> OnDeduct;
+        public event Action<ExclusionType> OnDeduct;
         public event Action<PlayEvent> OnOpenEventPage;
         public event Action OnCloseEventPage;
         public event Action OnFinishCourse;
@@ -19,9 +19,9 @@ namespace DiplomaSurviveDataGenerator
         public event Action OnFailEIT;
         public event Action OnPassEIT;
 
-        public virtual void Deduct(DeductionType deduction)
+        public virtual void Deduct(ExclusionType exclusion)
         {
-            OnDeduct?.Invoke(deduction);
+            OnDeduct?.Invoke(exclusion);
             ContextChanged();
         }
         public virtual void OpenEventPage(PlayEvent eventPage)

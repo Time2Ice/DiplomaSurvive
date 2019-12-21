@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace DiplomaSurviveDataGenerator
 {
-    public enum DeductionType
+    public interface IExclusionCheck
     {
-        None,
-        Undefined,
-        FailExam
+        string CheckForExclusion();
+        bool IsNecessary { get; }
     }
 }

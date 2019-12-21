@@ -12,7 +12,7 @@ namespace DiplomaSurviveDataGenerator
         public ExamPage RootPage { get; set; }
         public int Level { get; set; }
         public ExamType Type { get; set; }
-        public double DeductionProbability { set; protected get; } = 0.5;
+        public double ExclusionProbability { set; protected get; } = 0.5;
 
         protected ExamPage RootPageClone
         {
@@ -29,7 +29,7 @@ namespace DiplomaSurviveDataGenerator
         }
         public virtual ExamPage Start()
         {
-            RootPage.SetProbability(DeductionProbability);
+            RootPage.SetProbability(ExclusionProbability);
             return RootPage;
         }
         IExam ICloneable<IExam>.Clone()
@@ -43,7 +43,7 @@ namespace DiplomaSurviveDataGenerator
                 RootPage = RootPageClone,
                 Level = Level,
                 Type = Type,
-                DeductionProbability = DeductionProbability
+                ExclusionProbability = ExclusionProbability
             };
         }
     }

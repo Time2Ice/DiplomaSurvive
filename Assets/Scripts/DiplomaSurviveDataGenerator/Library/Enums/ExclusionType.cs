@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace DiplomaSurviveDataGenerator
 {
-    public interface IDeductionService
+    public enum ExclusionType
     {
-        Deduction GetDeduction(DeductionType type, int? level = null);
+        None,
+        Undefined,
+        FailExam,
+        FailEIT,
+        PersonalLife
     }
 }

@@ -50,13 +50,13 @@ namespace DiplomaSurviveDataGenerator
             {
                 Title = leftTitle,
                 NextPage = nextPage,
-                DeductionCoefficient = leftCoef
+                ExclusionCoefficient = leftCoef
             });
             Buttons.Add(new ExamButton(generator: generator)
             {
                 Title = rightTitle,
                 NextPage = nextPage,
-                DeductionCoefficient = rightCoef
+                ExclusionCoefficient = rightCoef
             });
         }
         public SimilarPageExam(ExamButton leftButton, ExamButton rightButton, ExamPage nextPage = null, string title = "")

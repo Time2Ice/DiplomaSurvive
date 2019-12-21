@@ -11,7 +11,7 @@ namespace DiplomaSurviveDataGenerator
     {
         protected INumberGenerator _numberGenerator;
         public double CurrProbability { get; protected set; } = 1;
-        public double DeductionCoefficient { get; set; } = 1;
+        public double ExclusionCoefficient { get; set; } = 1;
         public ExamPage NextPage { get; set; }
         public ExamFailPage FailPage { get; set; }
         public ExamSuccessPage SuccessPage { get; set; }
@@ -40,16 +40,16 @@ namespace DiplomaSurviveDataGenerator
             }
         }
 
-        public ExamButton(string title = "", double deductionCoef = 1, INumberGenerator generator = null)
+        public ExamButton(string title = "", double exclusionCoef = 1, INumberGenerator generator = null)
         {
             Title = title;
-            DeductionCoefficient = deductionCoef;
+            ExclusionCoefficient = exclusionCoef;
             _numberGenerator = generator ?? new DefaultNumberGenerator();
         }
 
-        public void SetDeductionProbability(double probability)
+        public void SetExclusionProbability(double probability)
         {
-            CurrProbability = probability * DeductionCoefficient;
+            CurrProbability = probability * ExclusionCoefficient;
         }
         public override ExamPage OnClickFunc (IPlayContext context = null)
         {
@@ -75,7 +75,7 @@ namespace DiplomaSurviveDataGenerator
             {
                 Title = Title,
                 CurrProbability = CurrProbability,
-                DeductionCoefficient = DeductionCoefficient,
+                ExclusionCoefficient = ExclusionCoefficient,
                 NextPage = NextPageClone,
                 SuccessPage = SuccessPageClone,
                 FailPage = FailPageClone,

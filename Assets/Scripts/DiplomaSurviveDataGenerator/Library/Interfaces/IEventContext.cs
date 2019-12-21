@@ -8,7 +8,7 @@ namespace DiplomaSurviveDataGenerator
 {
     public interface IEventContext
     {
-        event Action<DeductionType> OnDeduct;
+        event Action<ExclusionType> OnDeduct;
         event Action<PlayEvent> OnOpenEventPage;
         event Action OnCloseEventPage;
         event Action OnFinishCourse;
@@ -21,7 +21,7 @@ namespace DiplomaSurviveDataGenerator
         void OpenEventPage(PlayEvent eventPage);
         void CloseEventPage();
         void FinishCourse();
-        void Deduct(DeductionType deduction);
+        void Deduct(ExclusionType exclusion);
         void StartExam(IExam exam);
         void FailExam();
         void PassExam();

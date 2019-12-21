@@ -89,19 +89,19 @@ namespace DiplomaSurviveDataGenerator
             Buttons.Add(new ExamButton(generator: generator)
             {
                 Title = leftTitle,
-                DeductionCoefficient = leftCoef
+                ExclusionCoefficient = leftCoef
             });
             Buttons.Add(new ExamButton(generator: generator)
             {
                 Title = rightTitle,
-                DeductionCoefficient = rightCoef
+                ExclusionCoefficient = rightCoef
             });
         }
         public void SetProbability(double probability)
         {
             foreach(var button in Buttons)
             {
-                button?.SetDeductionProbability(probability);
+                button?.SetExclusionProbability(probability);
             }
         }
         ExamPage ICloneable<ExamPage>.Clone()

@@ -9,7 +9,7 @@ namespace DiplomaSurviveDataGenerator
     public interface IExam: ICloneable<IExam>
     {
         int Level { get; set; }
-        double DeductionProbability { set; }
+        double ExclusionProbability { set; }
         ExamType Type { get; set; }
         ExamPage Start();
     }

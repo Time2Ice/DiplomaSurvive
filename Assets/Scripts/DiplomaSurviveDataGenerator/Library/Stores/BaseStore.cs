@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace DiplomaSurviveDataGenerator
 {
@@ -53,7 +54,7 @@ namespace DiplomaSurviveDataGenerator
             return _elements.Remove(element);
         }
 
-        public virtual ICollection<T> GetAll()
+        public virtual List<T> GetAll()
         {
             return _elements;
         }

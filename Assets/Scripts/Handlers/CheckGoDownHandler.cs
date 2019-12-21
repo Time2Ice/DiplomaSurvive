@@ -10,20 +10,20 @@ namespace Assets.Scripts.Handlers
 {
     class CheckGoDownHandler : ITickable
     {
-        private IDeductionCheck _deductionCheck;
-        CheckGoDownHandler(IDeductionCheck deductionCheck)
+        private IExclusionCheck _exclusionCheck;
+        CheckGoDownHandler(IExclusionCheck exclusionCheck)
         {
-            _deductionCheck = deductionCheck;
+            _exclusionCheck = exclusionCheck;
         }
 
         public void Tick()
         {
-            if (_deductionCheck.IsNecessary) Check();
+            if (_exclusionCheck.IsNecessary) Check();
         }
 
         private void Check()
         {
-           var deduction= _deductionCheck.CheckForDeduction();
+           var exclusion= _exclusionCheck.CheckForExclusion();
            
         }
     }

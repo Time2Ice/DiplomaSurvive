@@ -13,7 +13,7 @@ namespace DiplomaSurviveDataGenerator
         public bool IsDirty { get; private set; } = true;
         [field:NonSerialized]
         public virtual event ValueChanged OnDirty;
-        public DeductionType DeductionType { get; set; } = DeductionType.Undefined;
+        public ExclusionType ExclusionType { get; set; } = ExclusionType.Undefined;
         public ICheckStep CheckChain 
         { 
             protected get
@@ -51,7 +51,7 @@ namespace DiplomaSurviveDataGenerator
             {
                 CheckChain = CheckChain.Clone(),
                 Priority = Priority,
-                DeductionType = DeductionType
+                ExclusionType = ExclusionType
             };
         }
         public virtual object ShallowCopy()

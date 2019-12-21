@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DiplomaSurviveDataGenerator
 {
-    public class BaseDeductionCheck : IDeductionCheck
+    public class BaseExclusionCheck : IExclusionCheck
     {
         private INumberGenerator _generator;
         protected IPlayContext _context;
         protected List<BaseCheck> _checks;
-        protected IDeductionService _deductionStore;
+        protected IExclusionService _exclusionStore;
         public INumberGenerator NumberGenerator
         {
             get
@@ -25,22 +25,22 @@ namespace DiplomaSurviveDataGenerator
         }
         public bool IsNecessary { get; protected set; } = true;
 
-        public BaseDeductionCheck 
+        public BaseExclusionCheck 
         (
             IPlayContext context, 
             IStore<BaseCheck> checks, 
-            IDeductionService deductionStore
+            IExclusionService exclusionStore
         )
         {
             _context = context ?? throw new ArgumentNullException("Context must be not null");
-            _deductionStore = deductionStore ?? throw new ArgumentNullException("Deduction store must be not null");
+            _exclusionStore = exclusionStore ?? throw new ArgumentNullException("Exclusion store must be not null");
             _generator = new DefaultNumberGenerator();
             InitChecks(checks.GetAll());
         }
 
-        public string CheckForDeduction()
+        public string CheckForExclusion()
         {
-            Deduction deduction = null;
+            Exclusion exclusion = null;
             var currChecks = _checks.Where(check => check.IsDirty);
 
             foreach(var check in currChecks)
@@ -49,18 +49,18 @@ namespace DiplomaSurviveDataGenerator
                 {
                     continue;
                 }
-                deduction = _deductionStore.GetDeduction(check.DeductionType);
-                if (deduction != null)
+                exclusion = _exclusionStore.GetExclusion(check.ExclusionType);
+                if (exclusion != null)
                 {
                     break;
                 }
             }
 
-            if (deduction == null)
+            if (exclusion == null)
             {
                 IsNecessary = false;
             }
-            return deduction.Id;
+            return exclusion.Id;
         }
 
         private void NeedCheck()

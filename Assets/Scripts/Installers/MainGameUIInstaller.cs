@@ -38,7 +38,7 @@ namespace Installers
                 .To<LocalDataProvider>().AsSingle();
             Container.Bind(typeof(ILocalDataWriter))
                 .To<LocalDataWriter>().AsSingle();
-            Container.Bind(typeof(Requests)).To<Requests>().AsSingle();
+            //Container.Bind(typeof(Requests)).To<Requests>().AsSingle();
 
             BindHandlers();
             BindDataGenerator();
@@ -64,6 +64,11 @@ namespace Installers
 
             Container.Bind(typeof(IStore<IExam>))
                 .To<ExamStore>().AsSingle();
+            Container.Bind(typeof(IStore<Exclusion>))
+                .To<ExclusionStore>().AsSingle();
+
+            Container.Bind(typeof(IExclusionService))
+                .To<ExclusionService>().AsSingle();
 
             Container.Bind(typeof(IExamService))
                .To<ExamService>().AsSingle();
