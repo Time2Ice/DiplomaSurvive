@@ -200,6 +200,16 @@
     <Compile Include="Assets\Scripts\Prefabs\Reason.cs" />
     <Compile Include="Assets\Scripts\Prefabs\Task.cs" />
     <Compile Include="Assets\Scripts\Prefabs\TaskMessage.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\ApiResponse.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\Event\GetEventResponse.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\Leaderboard\GetLeaderboardResponse.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\Player\AuthenticateUserRequest.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\Player\AuthenticateUserResponse.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\Player\SetUserScoresRequest.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\Player\SetUserScoresResponse.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\Player\SignInUserRequest.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\Player\SignInUserResponse.cs" />
+    <Compile Include="Assets\Scripts\ServerConnection\Requests.cs" />
     <Compile Include="Assets\Scripts\UI\Controllers\Abilities.cs" />
     <Compile Include="Assets\Scripts\UI\Controllers\Characters.cs" />
     <Compile Include="Assets\Scripts\UI\Controllers\Courses.cs" />

@@ -38,7 +38,7 @@ namespace Installers
                 .To<LocalDataProvider>().AsSingle();
             Container.Bind(typeof(ILocalDataWriter))
                 .To<LocalDataWriter>().AsSingle();
-            //Container.Bind(typeof(Requests)).To<Requests>().AsSingle();
+            Container.Bind(typeof(Requests)).To<Requests>().AsSingle();
 
             BindHandlers();
             BindDataGenerator();
