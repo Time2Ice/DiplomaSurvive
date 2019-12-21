@@ -53,7 +53,7 @@ namespace UiScenario
                 if (controller.View.Attributes.Contains(WindowAttribute.Modal) && _windowCtrls.Count > 0)
                 {
                     var topController = _windowCtrls.FirstOrDefault(w => w.Type == type);
-                    if (topController.View.Attributes.Contains(WindowAttribute.Modal))
+                    if (topController?.View.Attributes.Contains(WindowAttribute.Modal) == true)
                     {
                         topController.Block();
                         OnWindowStateChanged(WindowActionType.Blocked, topController);
