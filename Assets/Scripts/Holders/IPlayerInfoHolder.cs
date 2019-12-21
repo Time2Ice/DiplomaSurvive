@@ -11,6 +11,7 @@ namespace DefaultNamespace
         event Action<int> UniversityChanged;
         event Action<int> MaxPrivateLifeChanged;
         event Action<int> PointsChanged;
+        event Action<int> ChangedPosition;
 
         int[] Abilities { get; set; }
         int[] Courses { get; set; }
@@ -28,5 +29,8 @@ namespace DefaultNamespace
         int MaxPoints { get; set; }
         int UniversityPoints { get; set; }
         int TasksTaken { get; set; }
+        string Token { get; set; }
+        string Name{ get; set; }
+        int Position { get; set; }
     }
 }

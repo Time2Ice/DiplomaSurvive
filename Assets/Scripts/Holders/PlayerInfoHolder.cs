@@ -17,6 +17,8 @@ namespace DefaultNamespace
         public event Action<int> UniversityChanged;
         public event Action<int> MaxPrivateLifeChanged;
         public event Action<int> PointsChanged;
+        public event Action<int> ChangedPosition;
+
 
         private PlayerInfoDto _playerInfoDto;
 
@@ -127,6 +129,7 @@ namespace DefaultNamespace
 
                 _playerInfoDto.max_points = value;
                 _localDataProvider.Save(_playerInfoDto);
+                _requests.SetScore();
             }
         }
         public int UniversityPoints
@@ -232,34 +235,84 @@ namespace DefaultNamespace
             }
         }
 
+        public string Token
+        {
+
+            get => _playerInfoDto.token;
+            set
+            {
+                if (_playerInfoDto.token == value)
+                    return;
+
+                _playerInfoDto.token = value;
+                _localDataProvider.Save(_playerInfoDto);
+            }
+        }
+
+        public string Name
+        {
+
+            get => _playerInfoDto.name;
+            set
+            {
+                if (_playerInfoDto.name == value)
+                    return;
+
+                _playerInfoDto.name = value;
+                _localDataProvider.Save(_playerInfoDto);
+            }
+        }
+
+        public int Position
+        {
+
+            get => _playerInfoDto.position;
+            set
+            {
+                if (_playerInfoDto.position == value)
+                    return;
+
+                _playerInfoDto.position = value;
+                _localDataProvider.Save(_playerInfoDto);
+                ChangedPosition?.Invoke(_playerInfoDto.position);
+            }
+        }
+
         private readonly IAppStateHandler _appStateHandler;
         private readonly ILocalDataProvider _localDataProvider;
+        private Requests _requests;
 
-        public PlayerInfoHolder(IAppStateHandler appStateHandler,
+        public PlayerInfoHolder(Requests requests, IAppStateHandler appStateHandler,
             ILocalDataProvider localDataProvider)
         {
             _localDataProvider = localDataProvider;
             _appStateHandler = appStateHandler;
+           _requests = requests;
+            requests.PlayerInfoHolder = this;
             SetData();
-        //    requests.SignIn("Lilly");
+
         }
 
         private void SetData()
         {
-            if (!_appStateHandler.GetData(out PlayerInfoDto dto))
+          /*  if (!_appStateHandler.GetData(out PlayerInfoDto dto))
             {
                 if (_localDataProvider.Exist<PlayerInfoDto>())
                 {
                     dto = _localDataProvider.Load<PlayerInfoDto>();
+                    _requests.Authenticate();
                 }
                 else
                 {
                     dto = CreatePlayerInfo();
                     _localDataProvider.Save(dto);
+                    _requests.SignInRequest();
                 }
-            }
-            dto = CreatePlayerInfo();
+            }*/
+          
+            var dto = CreatePlayerInfo();
             _playerInfoDto = dto;
+            _requests.SignInRequest();
         }
 
         private PlayerInfoDto CreatePlayerInfo()
@@ -275,7 +328,8 @@ namespace DefaultNamespace
                 task_queue_capacity = 20,
                 abilities = new int[0],
                 courses = new int[0],
-                reasons = new string[] { "1" }
+                reasons = new string[] { "1" },
+                name = System.Guid.NewGuid().ToString()
             };
             return dto;
         }

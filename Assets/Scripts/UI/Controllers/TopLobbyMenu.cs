@@ -30,6 +30,7 @@ namespace UI.Controllers
                 _playerInfoHolder.CoinsChanged += ShowBalance;
                 _playerInfoHolder.CourseChanged += SetSemester;
                 _playerInfoHolder.UniversityChanged += ShowUniversityCount;
+                _playerInfoHolder.ChangedPosition += SetPosition;
             }
 
             public override void Open(Dictionary<string, object> callData)
@@ -57,9 +58,9 @@ namespace UI.Controllers
                 ConcreteView.SetSemester(_gameInfoHolder.Courses[value].number);
             }
 
-            private void SetContinuePossibility(int value)
+            private void SetPosition(int value)
             {
-                ConcreteView.SetContinuePossibility(value);
+                ConcreteView.SetPosition(value);
             }
 
             private void SetPersonalLife(int currentValue, int maxValue)
@@ -79,6 +80,7 @@ namespace UI.Controllers
                 _playerInfoHolder.CoinsChanged -= ShowBalance;
                 _playerInfoHolder.CourseChanged -= SetSemester;
                 _playerInfoHolder.UniversityChanged -= ShowUniversityCount;
+                _playerInfoHolder.ChangedPosition -= SetPosition;
             }
         }
 
