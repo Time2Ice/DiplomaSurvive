@@ -60,9 +60,10 @@ namespace DiplomaSurviveDataGenerator
                 return NextPage;
             }
 
-            if (_numberGenerator.NextDouble01() >= CurrProbability)
+            var probability = _numberGenerator.NextDouble01();
+            if (probability > CurrProbability || probability >= 0.999)
             {
-                SuccessPage = SuccessPage ?? new ExamSuccessPage();
+                SuccessPage ??= new ExamSuccessPage();
                 return SuccessPage;
             }
 
