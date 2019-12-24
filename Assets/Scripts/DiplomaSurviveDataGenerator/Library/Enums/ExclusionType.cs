@@ -8,7 +8,6 @@ namespace DiplomaSurviveDataGenerator
 {
     public enum ExclusionType
     {
-        None,
         Undefined,
         FailSession,
         FailEIT,

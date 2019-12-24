@@ -27,6 +27,8 @@ namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
                 {
                     new PersonalLifeScoreShortageCheckStep(context) { MinScore = 0, ExclusionProbability = 1 },
                 }) { Priority = 1 },
+                new NeedDeductionCheck(context)
+                { },
             };
         }
     }

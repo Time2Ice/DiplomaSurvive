@@ -31,6 +31,7 @@ namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
             types[ExclusionType.FailEIT] += "EIT failure";
             types[ExclusionType.FailSession] += "Session failure";
             types[ExclusionType.PersonalLife] += "Personal reasons";
+            types[ExclusionType.Professor] += "Study reasons";
 
             var list = new List<Exclusion>()
             {
@@ -51,6 +52,18 @@ namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
                     Title = types[ExclusionType.PersonalLife],
                     Types = new List<ExclusionType>(){ ExclusionType.PersonalLife },
                     Description = "You studied too much, because of this the girl left you. You were upset and could not finish the tasks on time.",
+                },
+                new Exclusion()
+                {
+                    Title = types[ExclusionType.FailSession],
+                    Types = new List<ExclusionType>(){ ExclusionType.FailSession },
+                    Description = "You had different tastes at football clubs with the teacher who took the exam."
+                },
+                new Exclusion()
+                {
+                    Title = types[ExclusionType.Professor],
+                    Types = new List<ExclusionType>(){ ExclusionType.FailSession },
+                    Description = "You had different tastes at football clubs with the teacher who took the exam."
                 },
             };
 
