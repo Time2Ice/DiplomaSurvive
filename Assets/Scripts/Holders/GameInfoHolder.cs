@@ -77,10 +77,10 @@ namespace DefaultNamespace
                 personal_life_increase_time = 2,
                 courses = new[]
                 {
-                    new CourseDto { number = 1, points_to_next = 10 },
-                    new CourseDto { number = 2, points_to_next = 20 },
-                    new CourseDto { number = 3, points_to_next = 35 },
-                    new CourseDto { number = 4, points_to_next = 50 },
+                    new CourseDto { number = 1, points_to_next = 25 },
+                    new CourseDto { number = 2, points_to_next = 50 },
+                    new CourseDto { number = 3, points_to_next = 60 },
+                    new CourseDto { number = 4, points_to_next = 75 },
                     new CourseDto { number = 5, points_to_next = 100 },
                     new CourseDto { number = 6, points_to_next = 200 },
                 },

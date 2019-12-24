@@ -21,7 +21,7 @@ namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
                 new BaseCheck(ExclusionType.PersonalLife, new List<ICheckStep>
                 {
                     new StudyScoreExcessPercentCheckStep(context) { Percent = 0.5},
-                    new PersonalLifeScoreShortagePercentCheckStep(context) { Percent = 0.5, ExclusionProbability = 0.001 },
+                    new PersonalLifeScoreShortagePercentCheckStep(context) { Percent = 0.5, ExclusionProbability = 0.1 },
                 }),
                 new BaseCheck(ExclusionType.PersonalLife, new List<ICheckStep>
                 {

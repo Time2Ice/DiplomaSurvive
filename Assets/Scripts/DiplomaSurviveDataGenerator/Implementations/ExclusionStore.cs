@@ -49,9 +49,10 @@ namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
                 },
                 new Exclusion()
                 {
+                    Coefficient = 3,
                     Title = types[ExclusionType.PersonalLife],
                     Types = new List<ExclusionType>(){ ExclusionType.PersonalLife },
-                    Description = "You studied too much, because of this the girl left you. You were upset and could not finish the tasks on time.",
+                    Description = "You studied too much, because of the girlfriend left you. You were upset and could not finish the tasks on time.",
                 },
                 new Exclusion()
                 {
@@ -62,11 +63,24 @@ namespace Assets.Scripts.DiplomaSurviveDataGenerator.Implementations
                 new Exclusion()
                 {
                     Title = types[ExclusionType.Professor],
-                    Types = new List<ExclusionType>(){ ExclusionType.FailSession },
-                    Description = "You had different tastes at football clubs with the teacher who took the exam."
+                    Types = new List<ExclusionType>(){ ExclusionType.Professor },
+                    Description = "You had different tastes at basketb clubs with the teacher who took the exam."
+                },
+                new Exclusion()
+                {
+                    Title = types[ExclusionType.PersonalLife],
+                    Types = new List<ExclusionType>(){ ExclusionType.PersonalLife },
+                    Description = "You missing two deadlines because you die. But that does not matter anyone..."
+                },
+                new Exclusion()
+                {
+                    Coefficient = 2,
+                    Title = types[ExclusionType.PersonalLife],
+                    Types = new List<ExclusionType>(){ ExclusionType.PersonalLife, ExclusionType.FailSession },
+                    Description = "You tried to take everything so hard that you started to disgust everyone. "
                 },
             };
-
+            //You are expelled due to missing deadlines that you didn’t know about in 2 important subjects
             for (int i = 0; i < list.Count; i++)
             {
                 list[i].Id = (1000 + i).ToString();

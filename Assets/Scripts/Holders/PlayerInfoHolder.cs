@@ -297,25 +297,26 @@ namespace DefaultNamespace
 
         private void SetData()
         {
-            //if (!_appStateHandler.GetData(out PlayerInfoDto dto))
-            //{
-            //    if (_localDataProvider.Exist<PlayerInfoDto>())
-            //    {
-            //        dto = _localDataProvider.Load<PlayerInfoDto>();
-            //        _playerInfoDto = dto;
-            //        _requests.Authenticate();
-            //    }
-            //    else
-            //    {
-            //        dto = CreatePlayerInfo();
-            //        _localDataProvider.Save(dto);
-            //        _requests.SignInRequest();
-            //    }
-            //}
+            if (!_appStateHandler.GetData(out PlayerInfoDto dto))
+            {
+                if (_localDataProvider.Exist<PlayerInfoDto>())
+                {
+                    dto = _localDataProvider.Load<PlayerInfoDto>();
+                    _playerInfoDto = dto;
+                    _requests.Authenticate();
+                }
+                else
+                {
+                    dto = CreatePlayerInfo();
+                    _playerInfoDto = dto;
+                    _localDataProvider.Save(dto);
+                    _requests.SignInRequest();
+                }
+            }
 
-            var dto = CreatePlayerInfo();
-            _playerInfoDto = dto;
-            _requests.SignInRequest();
+            //var dto = CreatePlayerInfo();
+            //_playerInfoDto = dto;
+            //_requests.SignInRequest();
         }
 
         private PlayerInfoDto CreatePlayerInfo()
@@ -331,7 +332,7 @@ namespace DefaultNamespace
                 task_queue_capacity = 20,
                 abilities = new int[0],
                 courses = new int[0],
-                reasons = new string[] { "1" },
+                reasons = new string[0] ,
                 name = System.Guid.NewGuid().ToString()
             };
             return dto;
