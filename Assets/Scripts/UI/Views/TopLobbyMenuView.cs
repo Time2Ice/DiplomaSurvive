@@ -12,7 +12,7 @@ namespace UI.Views
         [SerializeField] private TMP_Text _universityCountText;
         [SerializeField] TMP_Text _balanceText;
         [SerializeField] TMP_Text _semesterText;
-        [SerializeField] TMP_Text _continuePossibilityText;
+        [SerializeField] TMP_Text _positionText;
         [SerializeField] TMP_Text _personalLifeText;
         [SerializeField] TMP_Text _marksText;
 
@@ -35,15 +35,15 @@ namespace UI.Views
 
         public void SetUniversityCount(int value)
         {
-            _universityCountText.text = value.ToString(CultureInfo.InvariantCulture);
+            _universityCountText.text = value.ToString(CultureInfo.InvariantCulture)+"university";
         }
         public void SetSemester(int value)
         {
-            _semesterText.text = value.ToString(CultureInfo.InvariantCulture);
+            _semesterText.text = value.ToString(CultureInfo.InvariantCulture)+"semester";
         }
-        public void SetContinuePossibility(int value)
+        public void SetPosition(int value)
         {
-            _continuePossibilityText.text = value.ToString(CultureInfo.InvariantCulture);
+            _positionText.text = "Position: "+value.ToString(CultureInfo.InvariantCulture);
         }
         
         public void SetPersonalLife(int currentValue, int maxValue)

@@ -14,11 +14,25 @@ namespace DefaultNamespace
         public int university;
         public int coins;
 
+        public int max_points;
+        public int university_points;
         public int points;
         public int private_life;
+        public int max_private_life;
         public int current_course;
 
+        public int tasks_taken;
+
         public int possibility_to_stay;
+
+        public int task_queue_capacity;
+
+        public string token;
+
+        public string name;
+
+        public int position;
+
 
         public bool AbilitiesEqual(int[] other)
         {
@@ -30,7 +44,7 @@ namespace DefaultNamespace
             }
             return true;
         }
-        
+
         public bool CoursesEqual(int[] other)
         {
             if (courses == null || other == null) return false;
@@ -41,7 +55,7 @@ namespace DefaultNamespace
             }
             return true;
         }
-        
+
         public bool ReasonsEqual(string[] other)
         {
             if (reasons == null || other == null) return false;

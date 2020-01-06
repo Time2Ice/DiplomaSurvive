@@ -10,5 +10,6 @@ namespace Prefabs
         public int Id;
         public Image Image;
         public TMP_Text Name;
+        public GameObject Mask;
     }
 }

@@ -3,6 +3,7 @@ using EventAggregator;
 using UiScenario;
 using UiScenario.Concrete.Data;
 using UI.Views;
+using DefaultNamespace;
 
 namespace UI.Controllers
 {
@@ -12,16 +13,19 @@ namespace UI.Controllers
         {
             public override WindowType Type => WindowType.RecordBook;
 
-            Controller()
+            private IPlayerInfoHolder _playerInfoHolder;
+            private IGameInfoHolder _gameInfoHolder;
+            Controller(IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
             {
-
+                _playerInfoHolder = playerInfoHolder;
+                _gameInfoHolder = gameInfoHolder;
             }
 
             public override void Open(Dictionary<string, object> callData)
             {
-                ShowUniversityCount(1);
-                ShowCurrentCourse(1);
-                ShowMaxCourse(1);
+                ShowUniversityCount(_playerInfoHolder.University);
+                ShowCurrentCourse(_gameInfoHolder.Courses[_playerInfoHolder.CurrentCourse].number);
+                ShowMaxCourse(_gameInfoHolder.Courses[_playerInfoHolder.MaxCourse].number);
             }
 
             private void ShowUniversityCount(int value)
@@ -50,7 +54,7 @@ namespace UI.Controllers
 
         public new class Scenario : Contractor.Scenario, OpenWindowEvent.ISubscribed
         {
-            public override WindowType Type => WindowType.Abilities;
+            public override WindowType Type => WindowType.RecordBook;
 
             public Scenario(IWindowHandler windowHandler) : base(windowHandler)
             {

@@ -10,6 +10,8 @@ using Prefabs;
 using UiScenario;
 using UiScenario.Concrete.Data;
 using UI.Views;
+using Assets.Scripts.Handlers;
+using System.Linq;
 
 namespace UI.Controllers
 {
@@ -19,20 +21,29 @@ namespace UI.Controllers
         {
             public override WindowType Type => WindowType.Reasons;
             private UnityPool _pool;
+            private IPlayerInfoHolder _playerInfoHolder;
+            private IGameInfoHolder _gameInfoHolder;
+            private IReasonHandler _reasonHandler;
 
-            Controller(UnityPool pool)
+            public Controller(UnityPool pool,
+                IReasonHandler reasonHandler, IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
             {
                 _pool = pool;
+                _playerInfoHolder = playerInfoHolder;
+                _gameInfoHolder = gameInfoHolder;
+                _reasonHandler = reasonHandler;
+                _reasonHandler.ReasonOpened += OpenReason;
             }
 
             public override void Open(Dictionary<string, object> callData)
             {
-
+                ShowReasons(_gameInfoHolder.Reasons);
+                ShowProgress(_playerInfoHolder.Reasons.Length, _gameInfoHolder.Reasons.Length);
             }
 
             private void ShowProgress(int currentValue, int maxValue)
             {
-                ConcreteView.SetProgress(currentValue, maxValue);
+                ConcreteView?.SetProgress(currentValue, maxValue);
             }
 
             private void ShowContinuePossibility(float possibility)
@@ -47,11 +58,17 @@ namespace UI.Controllers
                 {
                     ConcreteView.AddReason(GetReason(reason));
                 }
+                foreach (var id in _playerInfoHolder.Reasons)
+                {
+                    ConcreteView.OpenReason(id);
+                }
             }
 
-            private void ChangeReason(ReasonDto reason)
+            
+            private void OpenReason(string id)
             {
-                //todo get sprite here and call view function
+                ConcreteView?.OpenReason(id);
+                ShowProgress(_playerInfoHolder.Reasons.Length, _gameInfoHolder.Reasons.Length);
             }
 
 
@@ -60,7 +77,6 @@ namespace UI.Controllers
                 var reason = _pool.Pop<Reason>();
                 reason.Id = dto.Id;
                 reason.Name.text = dto.Name;
-                //todo add sprite
                 return reason;
 
             }
@@ -72,7 +88,7 @@ namespace UI.Controllers
 
             void EventAggHub<ChooseReasonEvent, string>.ISubscribed.OnEvent(string id)
             {
-                ReasonDto reason=new ReasonDto();
+                var reason = _gameInfoHolder.Reasons.FirstOrDefault(r => r.Id == id);
                 Event1().Publish(reason);
                 
             }
@@ -90,7 +106,11 @@ namespace UI.Controllers
 
             void EventAggHub<OpenReasonInfo, ReasonDto>.ISubscribed.OnEvent(ReasonDto value)
             {
-                WindowHandler.OpenWindow(WindowType.ReasonInfo);
+                var data = new Dictionary<string, object>
+                {
+                    {"Reason", value}
+                };
+                WindowHandler.OpenWindow(WindowType.ReasonInfo, data);
             }
         }
 

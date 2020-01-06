@@ -7,6 +7,7 @@ using Prefabs;
 using UiScenario;
 using UiScenario.Concrete.Data;
 using UI.Views;
+using System.Linq;
 
 namespace UI.Controllers
 {
@@ -16,15 +17,21 @@ namespace UI.Controllers
         {
             public override WindowType Type => WindowType.Courses;
             private UnityPool _pool;
+            private IPlayerInfoHolder _playerInfoHolder;
+            private IGameInfoHolder _gameInfoHolder;
 
-            Controller(UnityPool pool)
+            Controller(UnityPool pool, IPlayerInfoHolder playerInfoHolder, IGameInfoHolder gameInfoHolder)
             {
                 _pool = pool;
+                _playerInfoHolder = playerInfoHolder;
+                _gameInfoHolder = gameInfoHolder;
+                _playerInfoHolder.MaxCourseChanged += OpenCourseByNumber;
             }
 
             public override void Open(Dictionary<string, object> callData)
             {
-
+                ShowCourses(_gameInfoHolder.Courses);
+                ShowProgress(_playerInfoHolder.Courses.Length, _gameInfoHolder.Courses.Length);
             }
 
             private void ShowProgress(int currentValue, int maxValue)
@@ -39,11 +46,26 @@ namespace UI.Controllers
                 {
                     ConcreteView.AddCourse(GetCourse(course));
                 }
+                foreach (var id in _playerInfoHolder.Courses)
+                {
+                    OpenCourse(id);
+                }
+            }
+            private void OpenCourseByNumber(int num)
+            {
+                var id = _gameInfoHolder.Courses[num].number;
+                var courses = _playerInfoHolder.Courses.ToList();
+                courses.Add(id);
+                _playerInfoHolder.Courses = courses.ToArray();
+                ConcreteView.OpenCourse(id);
+                ShowProgress(_playerInfoHolder.Courses.Length, _gameInfoHolder.Courses.Length);
+
             }
 
-            private void ChangeCourse(CourseDto reason)
+
+            private void OpenCourse(int id)
             {
-                //todo get sprite here and call view function
+                ConcreteView.OpenCourse(id);
             }
 
 
@@ -52,9 +74,7 @@ namespace UI.Controllers
                 var course = _pool.Pop<Course>();
                 course.Id = dto.number;
                 course.Name.text = dto.number.ToString(CultureInfo.InvariantCulture);
-                //todo add sprite
                 return course;
-
             }
 
 
@@ -66,7 +86,7 @@ namespace UI.Controllers
         
         public new class Scenario : Contractor.Scenario
         {
-            public override WindowType Type => WindowType.Reasons;
+            public override WindowType Type => WindowType.Courses;
 
             public Scenario(IWindowHandler windowHandler) : base(windowHandler)
             {
